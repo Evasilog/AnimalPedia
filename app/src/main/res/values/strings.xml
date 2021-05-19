@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">AnimalPedia</string>
+    <string name="home_title1">Animal</string>
+    <string name="home_title2">Pedia</string>
+    <string name="home_category1">Amphibians</string>
+    <string name="home_category2">Reptiles</string>
+    <string name="home_category3">Fish</string>
+    <string name="home_category4">Birds</string>
+    <string name="home_category5">Mammals</string>
+    <string name="search_hint">Search an animal!</string>
+    <string name="favorites_hint">Your Favorites</string>
+    <string name="map_hint">Click on any continent to view its animals!</string>
+    <string name="map_sAmerica">South America</string>
+    <string name="map_nAmerica">North America</string>
+    <string name="map_europe">Europe</string>
+    <string name="map_africa">Africa</string>
+    <string name="map_asia">Asia</string>
+    <string name="map_oceania">Oceania</string>
+    <string name="map_antarctica">Antarctica</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_hint">Choose theme</string>
+    <string name="settings_theme_def">Default System</string>
+    <string name="settings_theme_l">Light</string>
+    <string name="settings_theme_d">Dark</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="item_theme_entry">
+        <item>Default</item>
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+    <string-array name="item_theme_value">
+        <item>default</item>
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
+</resources>
