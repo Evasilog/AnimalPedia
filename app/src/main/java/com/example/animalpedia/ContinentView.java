@@ -2,18 +2,26 @@ package com.example.animalpedia;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import java.util.List;
 
 public class ContinentView extends AppCompatActivity {
 
     TextView title_page;
     String titleText;
+
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerView.Adapter adapter;
+
+    public MyDBHandler dbHandler;
+    private List<Animal> animals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +32,17 @@ public class ContinentView extends AppCompatActivity {
         if (extra != null){
             titleText = extra.getString("key");
         }
+
+        dbHandler = new MyDBHandler(this, null);
+        animals = dbHandler.getAnimalCategory(titleText, 2);
+
+        recyclerView = findViewById(R.id.recycler_view);
+
+        //Set the layout of the items in the RecyclerView
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        initializeAnimalRecyclerAdapter();
 
         title_page = findViewById(R.id.page_title);
         title_page.setText(titleText);
@@ -56,5 +75,18 @@ public class ContinentView extends AppCompatActivity {
             }
         });
 
+    }
+
+    // Initializing Array adapter for the beer list
+    public void initializeAnimalRecyclerAdapter()
+    {
+        adapter = new RecyclerAdapter(animals);
+        recyclerView.setAdapter(adapter);
+       /* beerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                moveToBeerDetailsScreen(position);
+            }
+        });*/
     }
 }

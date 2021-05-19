@@ -1,9 +1,6 @@
 package com.example.animalpedia;
 
-import android.graphics.drawable.Icon;
-import android.media.Image;
-import java.io.Serializable;
-
+import android.graphics.Bitmap;
 
 public class Animal{
     private String animalID;
@@ -11,18 +8,18 @@ public class Animal{
     private String continent;
     private String name;
     private String details;
-    private int image;
+    private Bitmap image;
     private String link;
     public Animal(){
 
     }
 
-    public Animal(String animalID, String continent, String animalClass, String name, String details, String link/*, int image*/){
+    public Animal(String animalID, String continent, String animalClass, String name, String details, String link, Bitmap image){
         this.animalClass = animalClass;
         this.animalID = animalID;
         this.name = name;
         this.details = details;
-      //  this.image = image;
+        this.image = image;
         this.link = link;
         this.continent = continent;
     }
@@ -31,7 +28,7 @@ public class Animal{
         return this.animalID;
     }
 
-    public int getImage() {
+    public Bitmap getImage() {
         return this.image;
     }
 
@@ -75,7 +72,7 @@ public class Animal{
         this.details = details;
     }
 
-    public void setImage(int image) {
+    public void setImage(Bitmap image) {
         this.image = image;
     }
 

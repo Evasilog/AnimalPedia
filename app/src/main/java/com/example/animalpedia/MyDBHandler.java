@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,7 +18,7 @@ import java.util.List;
 public class MyDBHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "Animal.db";
+    private static final String DATABASE_NAME = "Animalv3.db";
 
     private static final String COLUMN_ID = "idAnimal";
     private static final String COLUMN_CONTINENT = "Continent";
@@ -25,6 +27,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
     private static final String COLUMN_DETAILS = "Details";
     private static final String COLUMN_LINK = "Link";
     private static final String COLUMN_IMAGE = "Image";
+
+    private static final String TABLE_ANIMAL = "Animal";
 
 
 
@@ -56,16 +60,22 @@ public class MyDBHandler extends SQLiteOpenHelper {
         }
     }
 
-    public List<Animal> getAnimalCategory(String animalCategory) {
-        // Query for selecting the necessary information for each beer from the Beer Table of the database
-        /*String query = "SELECT " + COLUMN_ID + ", " + COLUMN_CONTINENT + ", " + COLUMN_CLASS + ", " + COLUMN_NAME + ", " + COLUMN_DETAILS + ", " +
-                COLUMN_LINK  + " FROM Animal" + " WHERE Class ='" + animalCategory + "'" ;*/
+    public List<Animal> getAnimalCategory(String animalCategory, int mode) {
+        // mode == 1 σημαίνει οτι θα εμφανίσει τα ζώα ανάλογα με την κλάση που είναι
+        // mode != 1 σημαίνει ότι θα επιλέξει ζώα ανάλογα με την ήπειρο που βρίσκονται
 
         // Initialize the database
         SQLiteDatabase db = this.getWritableDatabase();
         // Execute the query and put the result inside a cursor
-        Cursor cursor = db.rawQuery("SELECT " + COLUMN_ID + ", " + COLUMN_CONTINENT + ", " + COLUMN_CLASS + ", " + COLUMN_NAME + ", " + COLUMN_DETAILS + ", " +
-                COLUMN_LINK  + " FROM Animal" + " WHERE Class ='" + animalCategory + "'", null);
+        Cursor cursor;
+        if(mode == 1) {
+            cursor = db.rawQuery("SELECT " + COLUMN_ID + ", " + COLUMN_CONTINENT + ", " + COLUMN_CLASS + ", " + COLUMN_NAME + ", " + COLUMN_DETAILS + ", " +
+                    COLUMN_LINK + ", " + COLUMN_IMAGE + " FROM Animal" + " WHERE Class ='" + animalCategory + "'", null);
+        }
+        else{
+            cursor = db.rawQuery("SELECT " + COLUMN_ID + ", " + COLUMN_CONTINENT + ", " + COLUMN_CLASS + ", " + COLUMN_NAME + ", " + COLUMN_DETAILS + ", " +
+                    COLUMN_LINK + " FROM Animal" + " WHERE Continent ='" + animalCategory + "'", null);
+        }
         // Initialize an empty ArrayList to store the result of the query
         List<Animal> animalList = new ArrayList<Animal>();
         // Initialize each beer and add it to the ArrayList
@@ -78,6 +88,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
             animal.setDetails(cursor.getString(4)); // Animal Details
             animal.setLink(cursor.getString(5)); // Animal link
             //animal.setBeerImage(getBeerImage(cursor.getInt(0),false)); // Beer Image (in byte[] format)
+            animal.setImage(getImage(cursor.getString(0)));
             // Add the beer to the beers list
             animalList.add(animal);
         }
@@ -85,13 +96,29 @@ public class MyDBHandler extends SQLiteOpenHelper {
         // Return the list containing all the beers
         return animalList;
     }
+
+
+    public Bitmap getImage(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Bitmap bt = null;
+        int k =1;
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_IMAGE + " FROM Animal" + " WHERE idAnimal ='" + id + "'", null);
+        if(cursor.moveToNext()){
+            byte[] img = cursor.getBlob(0);
+            bt = BitmapFactory.decodeByteArray(img, 0, img.length);
+        }
+        return  bt;
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS TABLE_ANIMAL");
+        onCreate(db);
     }
+
+
 }

@@ -4,23 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteQueryBuilder;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
-
 public class CategoryView extends AppCompatActivity {
 
     public TextView title_page;
@@ -44,7 +33,7 @@ public class CategoryView extends AppCompatActivity {
         }
 
         dbHandler = new MyDBHandler(this, null);
-        animals = dbHandler.getAnimalCategory(titleText);
+        animals = dbHandler.getAnimalCategory(titleText, 1);
         //animals = dbHandler.getAnimalCategory("Amphibian");
 
         recyclerView = findViewById(R.id.recycler_view);

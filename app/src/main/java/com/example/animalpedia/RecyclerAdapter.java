@@ -7,9 +7,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.animalpedia.R;
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +19,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         for(Animal animal: animalList){
             this.animalList.add(new Animal(animal.getAnimalID(), animal.getContinent(), animal.getAnimalClass(),
-                    animal.getName(), animal.getDetails(), animal.getLink()));
+                    animal.getName(), animal.getDetails(), animal.getLink(), animal.getImage()));
         }
 
     }
@@ -34,7 +31,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
-            itemImage = itemView.findViewById(R.id.item_image);
+            itemImage = (ImageView) itemView.findViewById(R.id.item_image);
             itemTitle = itemView.findViewById(R.id.item_title);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +57,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
         holder.itemTitle.setText(animalList.get(position).getName());
-        //holder.itemImage.setImageResource(images[position]);
+        holder.itemImage.setImageBitmap(animalList.get(position).getImage());
     }
 
     @Override
