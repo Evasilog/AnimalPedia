@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AnimalPedia">
+        <activity android:name=".AnimalView"></activity>
         <activity android:name=".Settings" />
         <activity android:name=".ContinentView" />
         <activity android:name=".CategoryView" />
