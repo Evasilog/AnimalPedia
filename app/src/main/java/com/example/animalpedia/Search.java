@@ -18,7 +18,6 @@ public class Search extends AppCompatActivity {
 
     private MyDBHandler dbHandler;
     private List<Animal> animalList;
-    private String searchContext;
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;

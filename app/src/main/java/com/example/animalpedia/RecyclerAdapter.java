@@ -22,16 +22,17 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements Filterable {
 
     private List<Animal> animalList;
-    private List<Animal> searchList;
 
+    private List<Animal> exampleListFull;
 
     public RecyclerAdapter(List<Animal> animalList){
         this.animalList = new ArrayList<>();
-        this.searchList = new ArrayList<>();
         for(Animal animal: animalList){
             this.animalList.add(new Animal(animal.getAnimalID(), animal.getContinent(), animal.getAnimalClass(),
                     animal.getName(), animal.getDetails(), animal.getLink(), animal.getImage()));
         }
+
+        exampleListFull = new ArrayList<>(animalList);
 
     }
 
@@ -46,11 +47,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             List<Animal> filteredAnimals = new ArrayList<>();
 
             if(constraint == null || constraint.length() == 0){
-                filteredAnimals.addAll(animalList);
+                filteredAnimals.addAll(exampleListFull);
             }else{
                 String filteredPattern = constraint.toString().toLowerCase().trim();
 
-                for(Animal animal: animalList){
+                for(Animal animal: exampleListFull){
                     if(animal.getName().toLowerCase().contains(filteredPattern)){
                         filteredAnimals.add(animal);
                     }
@@ -64,8 +65,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            searchList.clear();
-            searchList.addAll( (List) results.values);
+            animalList.clear();
+            animalList.addAll( (List) results.values);
             notifyDataSetChanged();
         }
 
