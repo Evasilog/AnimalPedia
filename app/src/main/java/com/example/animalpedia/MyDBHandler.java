@@ -18,18 +18,9 @@ import java.util.List;
 public class MyDBHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "Animalv3.db";
+    private static final String DATABASE_NAME = "Animal12.db";
 
-    private static final String COLUMN_ID = "idAnimal";
-    private static final String COLUMN_CONTINENT = "Continent";
-    private static final String COLUMN_CLASS = "Class";
-    private static final String COLUMN_NAME = "Name";
-    private static final String COLUMN_DETAILS = "Details";
-    private static final String COLUMN_LINK = "Link";
     private static final String COLUMN_IMAGE = "Image";
-
-    private static final String TABLE_ANIMAL = "Animal";
-
 
 
     MyDBHandler(Context context, SQLiteDatabase.CursorFactory factory){
@@ -69,15 +60,14 @@ public class MyDBHandler extends SQLiteOpenHelper {
         // Execute the query and put the result inside a cursor
         Cursor cursor;
         if(mode == 1) {
-            cursor = db.rawQuery("SELECT " + COLUMN_ID + ", " + COLUMN_CONTINENT + ", " + COLUMN_CLASS + ", " + COLUMN_NAME + ", " + COLUMN_DETAILS + ", " +
-                    COLUMN_LINK + ", " + COLUMN_IMAGE + " FROM Animal" + " WHERE Class ='" + animalCategory + "'", null);
-        }
-        else{
-            cursor = db.rawQuery("SELECT " + COLUMN_ID + ", " + COLUMN_CONTINENT + ", " + COLUMN_CLASS + ", " + COLUMN_NAME + ", " + COLUMN_DETAILS + ", " +
-                    COLUMN_LINK + " FROM Animal" + " WHERE Continent ='" + animalCategory + "'", null);
+            cursor = db.rawQuery("SELECT *" + " FROM Animal" + " WHERE Class ='" + animalCategory + "'", null);
+        }else if(mode == 2){
+            cursor = db.rawQuery("SELECT *" + " FROM Animal", null);
+        }else{
+            cursor = db.rawQuery("SELECT *" + " FROM Animal" + " WHERE Continent ='" + animalCategory + "'", null);
         }
         // Initialize an empty ArrayList to store the result of the query
-        List<Animal> animalList = new ArrayList<Animal>();
+        List<Animal> animalList = new ArrayList<>();
         // Initialize each beer and add it to the ArrayList
         while (cursor.moveToNext()) {
             Animal animal = new Animal();
@@ -87,8 +77,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
             animal.setName(cursor.getString(3)); // Animal Name
             animal.setDetails(cursor.getString(4)); // Animal Details
             animal.setLink(cursor.getString(5)); // Animal link
-            //animal.setBeerImage(getBeerImage(cursor.getInt(0),false)); // Beer Image (in byte[] format)
-            animal.setImage(getImage(cursor.getString(0)));
+            animal.setImage(getImage(cursor.getString(0))); // Animal image
+           // animal.setImage(getImage("1")); // Animal image
             // Add the beer to the beers list
             animalList.add(animal);
         }
@@ -98,16 +88,14 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
 
-    public Bitmap getImage(String id){
+    public byte[] getImage(String id){
         SQLiteDatabase db = this.getWritableDatabase();
-        Bitmap bt = null;
-        int k =1;
+        byte[] img = new byte[0];
         Cursor cursor = db.rawQuery("SELECT " + COLUMN_IMAGE + " FROM Animal" + " WHERE idAnimal ='" + id + "'", null);
         if(cursor.moveToNext()){
-            byte[] img = cursor.getBlob(0);
-            bt = BitmapFactory.decodeByteArray(img, 0, img.length);
+            img = cursor.getBlob(0);
         }
-        return  bt;
+        return  img;
     }
 
     @Override
@@ -116,7 +104,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS TABLE_ANIMAL");
+        db.execSQL("DROP TABLE IF EXISTS Animal");
         onCreate(db);
     }
 

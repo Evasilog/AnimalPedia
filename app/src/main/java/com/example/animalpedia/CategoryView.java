@@ -15,9 +15,9 @@ public class CategoryView extends AppCompatActivity {
     public TextView title_page;
     public String titleText;
 
-    RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
-    RecyclerView.Adapter adapter;
+    public RecyclerView recyclerView;
+    public RecyclerView.LayoutManager layoutManager;
+    public RecyclerView.Adapter adapter;
 
     MyDBHandler dbHandler;
     private List<Animal> animals;

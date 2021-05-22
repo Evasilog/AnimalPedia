@@ -16,9 +16,9 @@ public class ContinentView extends AppCompatActivity {
     TextView title_page;
     String titleText;
 
-    RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
-    RecyclerView.Adapter adapter;
+    public RecyclerView recyclerView;
+    public RecyclerView.LayoutManager layoutManager;
+    public RecyclerView.Adapter adapter;
 
     public MyDBHandler dbHandler;
     private List<Animal> animals;
