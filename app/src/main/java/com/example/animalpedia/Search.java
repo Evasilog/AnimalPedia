@@ -2,27 +2,32 @@ package com.example.animalpedia;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.SearchView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Search extends AppCompatActivity {
-
-    private MyDBHandler dbHandler;
-    private List<Animal> animalList;
-
+    private RecyclerAdapter adapter;
     private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter adapter;
-    private RecyclerAdapter recyclerAdapter;
+    private SearchView searchView;
+    private List<Animal> animals;
+    private MyDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +36,6 @@ public class Search extends AppCompatActivity {
 
         BottomNavigationView nav = findViewById(R.id.navigation_bar);
         nav.setSelectedItemId(R.id.nav_search);
-
-        dbHandler = new MyDBHandler(this, null);
-        animalList = dbHandler.getAnimalCategory(null, 2);
-
-        recyclerView = findViewById(R.id.recycler_view);
-
-        //Set the layout of the items in the RecyclerView
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
 
         nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -64,25 +60,19 @@ public class Search extends AppCompatActivity {
             }
         });
 
-    }
+        dbHandler = new MyDBHandler(this, null);
+        animals = dbHandler.getAnimalCategory(null, 2);
 
-   @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
+        recyclerView = findViewById(R.id.search_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        adapter = new RecyclerAdapter(animals,1);
 
-        if(id == R.id.nav_search){
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.navigation_bar, menu);
-        MenuItem searchViewItem = menu.findItem(R.id.searchBar);
-        //SearchView searchView = findViewById(R.id.searchBar); // Initializes the search item
-        SearchView searchView = (SearchView) searchViewItem.getActionView();
+        searchView = findViewById(R.id.searchBar);
+        searchView.setQueryHint("Search an animal");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -91,17 +81,9 @@ public class Search extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                recyclerAdapter.getFilter().filter(newText);
+                adapter.getFilter().filter(newText);
                 return false;
             }
         });
-        searchView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Expand the search bar and give focus to it so the user can search for a beer
-                ((SearchView) view).setIconified(false);
-            }
-        });
-        return super.onCreateOptionsMenu(menu);
     }
 }

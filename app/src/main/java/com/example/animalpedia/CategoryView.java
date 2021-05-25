@@ -81,14 +81,8 @@ public class CategoryView extends AppCompatActivity {
     // Initializing Array adapter for the beer list
     public void initializeAnimalRecyclerAdapter()
     {
-        adapter = new RecyclerAdapter(animals);
+        adapter = new RecyclerAdapter(animals, 1);
         recyclerView.setAdapter(adapter);
-       /* beerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                moveToBeerDetailsScreen(position);
-            }
-        });*/
     }
 
 

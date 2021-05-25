@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
+
 public class Animal implements Parcelable {
     private String animalID;
     private String animalClass;
@@ -12,12 +14,12 @@ public class Animal implements Parcelable {
     private String details;
     private byte[] image;
     private String link;
-
+    private boolean favorite;
     public Animal(){
 
     }
 
-    public Animal(String animalID, String continent, String animalClass, String name, String details, String link, byte[] image){
+    public Animal(String animalID, String continent, String animalClass, String name, String details, String link, byte[] image, boolean favorite){
         this.animalClass = animalClass;
         this.animalID = animalID;
         this.name = name;
@@ -25,8 +27,8 @@ public class Animal implements Parcelable {
         this.image = image;
         this.link = link;
         this.continent = continent;
+        this.favorite = favorite;
     }
-
 
     protected Animal(Parcel in) {
         animalID = in.readString();
@@ -36,6 +38,24 @@ public class Animal implements Parcelable {
         details = in.readString();
         image = in.createByteArray();
         link = in.readString();
+        favorite = in.readByte() != 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(animalID);
+        dest.writeString(animalClass);
+        dest.writeString(continent);
+        dest.writeString(name);
+        dest.writeString(details);
+        dest.writeByteArray(image);
+        dest.writeString(link);
+        dest.writeByte((byte) (favorite ? 1 : 0));
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Animal> CREATOR = new Creator<Animal>() {
@@ -78,6 +98,10 @@ public class Animal implements Parcelable {
         return this.continent;
     }
 
+    public boolean getFavorite() {
+        return  this.favorite;
+    }
+
     public void setAnimalID(String animalID) {
         this.animalID = animalID;
     }
@@ -106,19 +130,7 @@ public class Animal implements Parcelable {
         this.link = link;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(animalID);
-        dest.writeString(animalClass);
-        dest.writeString(continent);
-        dest.writeString(name);
-        dest.writeString(details);
-        dest.writeByteArray(image);
-        dest.writeString(link);
+    public void setFavorite(boolean favorite){
+        this.favorite = favorite;
     }
 }

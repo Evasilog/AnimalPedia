@@ -22,6 +22,9 @@
     <string name="settings_theme_def">Default System</string>
     <string name="settings_theme_l">Light</string>
     <string name="settings_theme_d">Dark</string>
+    <string name="favorites_hint_0">No animals in your favorites</string>
+    <string name="favorites_hint_1">1 animal in your favorites</string>
+    <string name="favorites_hint_2plus"> animals in your favorites</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

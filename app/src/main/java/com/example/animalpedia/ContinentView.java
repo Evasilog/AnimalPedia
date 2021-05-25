@@ -34,7 +34,7 @@ public class ContinentView extends AppCompatActivity {
         }
 
         dbHandler = new MyDBHandler(this, null);
-        animals = dbHandler.getAnimalCategory(titleText, 2);
+        animals = dbHandler.getAnimalCategory(titleText, 0);
 
         recyclerView = findViewById(R.id.recycler_view);
 
@@ -80,13 +80,7 @@ public class ContinentView extends AppCompatActivity {
     // Initializing Array adapter for the beer list
     public void initializeAnimalRecyclerAdapter()
     {
-        adapter = new RecyclerAdapter(animals);
+        adapter = new RecyclerAdapter(animals, 1);
         recyclerView.setAdapter(adapter);
-       /* beerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                moveToBeerDetailsScreen(position);
-            }
-        });*/
     }
 }

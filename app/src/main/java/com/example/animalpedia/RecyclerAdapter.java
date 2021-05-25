@@ -22,55 +22,20 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements Filterable {
 
     private List<Animal> animalList;
+    public List<Animal> animalListFull;
 
-    private List<Animal> exampleListFull;
+    private int mode;
 
-    public RecyclerAdapter(List<Animal> animalList){
+    public RecyclerAdapter(List<Animal> animalList, int mode){
+        this.animalListFull = new ArrayList<>(animalList);
         this.animalList = new ArrayList<>();
+        this.mode = mode;
         for(Animal animal: animalList){
             this.animalList.add(new Animal(animal.getAnimalID(), animal.getContinent(), animal.getAnimalClass(),
-                    animal.getName(), animal.getDetails(), animal.getLink(), animal.getImage()));
+                    animal.getName(), animal.getDetails(), animal.getLink(), animal.getImage(), animal.getFavorite()));
         }
-
-        exampleListFull = new ArrayList<>(animalList);
-
     }
 
-    @Override
-    public Filter getFilter() {
-        return animalFilter;
-    }
-
-    private Filter animalFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            List<Animal> filteredAnimals = new ArrayList<>();
-
-            if(constraint == null || constraint.length() == 0){
-                filteredAnimals.addAll(exampleListFull);
-            }else{
-                String filteredPattern = constraint.toString().toLowerCase().trim();
-
-                for(Animal animal: exampleListFull){
-                    if(animal.getName().toLowerCase().contains(filteredPattern)){
-                        filteredAnimals.add(animal);
-                    }
-                }
-            }
-
-            FilterResults results = new FilterResults();
-            results.values = filteredAnimals;
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            animalList.clear();
-            animalList.addAll( (List) results.values);
-            notifyDataSetChanged();
-        }
-
-    };
     //Class that holds the items to be displayed (Views in card_layout)
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView itemImage;
@@ -99,15 +64,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         }
     }
 
+
     //Methods that must be implemented for a RecyclerView.Adapter
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row, parent, false);
-        ViewHolder viewHolder = new ViewHolder(v);
-        return viewHolder;
+        View v;
+        if (mode==1){
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row, parent, false);
+        }
+        else {
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+        }
+        return new ViewHolder(v);
     }
-
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
         byte[] img = animalList.get(position).getImage();
@@ -121,4 +90,39 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return animalList.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        return animalFilter;
+    }
+
+    private Filter animalFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Animal> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(animalListFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Animal an : animalListFull) {
+                    if (an.getName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(an);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            animalList.clear();
+            animalList.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }

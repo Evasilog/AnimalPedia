@@ -1,12 +1,10 @@
 package com.example.animalpedia;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,9 +16,7 @@ import java.util.List;
 public class MyDBHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "Animal12.db";
-
-    private static final String COLUMN_IMAGE = "Image";
+    private static final String DATABASE_NAME = "Animal12vv.db";
 
 
     MyDBHandler(Context context, SQLiteDatabase.CursorFactory factory){
@@ -63,6 +59,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
             cursor = db.rawQuery("SELECT *" + " FROM Animal" + " WHERE Class ='" + animalCategory + "'", null);
         }else if(mode == 2){
             cursor = db.rawQuery("SELECT *" + " FROM Animal", null);
+        }else if(mode == 3){
+            cursor = db.rawQuery("SELECT *" + " FROM Animal" + " WHERE Favorite = '1'", null);
         }else{
             cursor = db.rawQuery("SELECT *" + " FROM Animal" + " WHERE Continent ='" + animalCategory + "'", null);
         }
@@ -77,9 +75,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
             animal.setName(cursor.getString(3)); // Animal Name
             animal.setDetails(cursor.getString(4)); // Animal Details
             animal.setLink(cursor.getString(5)); // Animal link
-            animal.setImage(getImage(cursor.getString(0))); // Animal image
-           // animal.setImage(getImage("1")); // Animal image
-            // Add the beer to the beers list
+            animal.setImage(cursor.getBlob(6));
+            animal.setFavorite(cursor.getInt(7)>0);
             animalList.add(animal);
         }
         cursor.close();
@@ -88,14 +85,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
 
-    public byte[] getImage(String id){
+    public void changeFavoriteState (Animal an){
         SQLiteDatabase db = this.getWritableDatabase();
-        byte[] img = new byte[0];
-        Cursor cursor = db.rawQuery("SELECT " + COLUMN_IMAGE + " FROM Animal" + " WHERE idAnimal ='" + id + "'", null);
-        if(cursor.moveToNext()){
-            img = cursor.getBlob(0);
-        }
-        return  img;
+        ContentValues values = new ContentValues();
+        values.put("Favorite",an.getFavorite());
+        db.update("Animal", values,"idAnimal=" + an.getAnimalID(),null);
     }
 
     @Override
