@@ -17,4 +17,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="DarkBackground">#2D313D</color>
+    <color name="DarkText">#8D8F97</color>
+    <color name="colorPrimaryNight">#16202c</color>
+    <color name="colorPrimaryDarkNight">#141d25</color>
+    <color name="primaryTitleColor">#212121</color>
+    <color name="primaryTitleColorNight">#FFFFFF</color>
+    <color name="colorAccentNight">#ffffff</color>
 </resources>

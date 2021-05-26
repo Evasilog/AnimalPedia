@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AnimalView">
+
+    <TextView
+        android:id="@+id/an_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/an_image"
+        android:layout_width="316dp"
+        android:layout_height="201dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:id="@+id/paw"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/ic_home"
+        android:backgroundTint="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/globe"
+        app:layout_constraintStart_toStartOf="@+id/an_image" />
+
+    <TextView
+        android:id="@+id/an_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/paw"
+        app:layout_constraintTop_toTopOf="@+id/paw" />
+
+    <View
+        android:id="@+id/globe"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/ic_map"
+        android:backgroundTint="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/an_image"
+        app:layout_constraintStart_toStartOf="@+id/an_image" />
+
+    <TextView
+        android:id="@+id/an_continent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/globe"
+        app:layout_constraintTop_toTopOf="@+id/globe" />
+
+    <ImageView
+        android:id="@+id/youtube"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/youtube"
+        app:layout_constraintEnd_toEndOf="@+id/an_image"
+        app:layout_constraintTop_toTopOf="@+id/paw" />
+
+    <ImageView
+        android:id="@+id/love"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="love"
+        android:src="@drawable/ic_favorite"
+        app:layout_constraintEnd_toEndOf="@+id/an_image"
+        app:layout_constraintTop_toBottomOf="@+id/paw" />
+
+    <TextView
+        android:id="@+id/an_details"
+        android:layout_width="330dp"
+        android:layout_height="312dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:scrollbars="vertical"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/an_image"
+        app:layout_constraintHorizontal_bias="0.50"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/an_name"
+        app:layout_constraintVertical_bias="0.50" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

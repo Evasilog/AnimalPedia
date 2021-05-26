@@ -55,14 +55,17 @@ public class ContinentView extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.nav_home:
+                        finishAffinity();
                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_search:
+                        finishAffinity();
                         startActivity(new Intent(getApplicationContext(),Search.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_favorites:
+                        finishAffinity();
                         startActivity(new Intent(getApplicationContext(),Favorites.class));
                         overridePendingTransition(0,0);
                         return true;

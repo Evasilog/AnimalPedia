@@ -59,14 +59,17 @@ public class CategoryView extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_search:
+                        finishAffinity();
                         startActivity(new Intent(getApplicationContext(),Search.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_favorites:
+                        finishAffinity();
                         startActivity(new Intent(getApplicationContext(),Favorites.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_map:
+                        finishAffinity();
                         startActivity(new Intent(getApplicationContext(),Map.class));
                         overridePendingTransition(0,0);
                         return true;

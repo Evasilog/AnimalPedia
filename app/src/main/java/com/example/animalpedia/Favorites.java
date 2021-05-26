@@ -1,6 +1,7 @@
 package com.example.animalpedia;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,10 +21,13 @@ import java.util.List;
 public class Favorites extends AppCompatActivity {
     public MyDBHandler dbHandler;
     private List<Animal> favAnimals;
+
     private TextView fav_hint;
-    RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
-    RecyclerView.Adapter adapter;
+
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +42,19 @@ public class Favorites extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.nav_home:
+                        finishAffinity();
                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_search:
+                        finishAffinity();
                         startActivity(new Intent(getApplicationContext(),Search.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_favorites:
                         return true;
                     case R.id.nav_map:
+                        finishAffinity();
                         startActivity(new Intent(getApplicationContext(),Map.class));
                         overridePendingTransition(0,0);
                         return true;
@@ -55,7 +64,7 @@ public class Favorites extends AppCompatActivity {
         });
 
         dbHandler = new MyDBHandler(this, null);
-        favAnimals = dbHandler.getAnimalCategory("", 3);
+        favAnimals = dbHandler.getAnimalCategory(null, 3);
 
         recyclerView = findViewById(R.id.fav_recycler_view);
 
@@ -70,22 +79,26 @@ public class Favorites extends AppCompatActivity {
         } else if (count==1) {
             fav_hint.setText(getString(R.string.favorites_hint_1));
         } else {
-            fav_hint.setText(count + getString(R.string.favorites_hint_2plus));
+            fav_hint.setText(count + " " + getString(R.string.favorites_hint_2plus));
         }
+    }
 
+
+
+
+    public void initializeAnimalRecyclerAdapter() {
+        adapter = new RecyclerAdapter(favAnimals,2);
+        layoutManager = new GridLayoutManager(this,2);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        initializeAnimalRecyclerAdapter();
-    }
-
-    public void initializeAnimalRecyclerAdapter()
-    {
-        adapter = new RecyclerAdapter(favAnimals,2);
-        layoutManager = new GridLayoutManager(this,2);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+        finish();
+        overridePendingTransition(0,0);
+        startActivity(getIntent());
+        overridePendingTransition(0,0);
     }
 }

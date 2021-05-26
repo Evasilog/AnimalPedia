@@ -47,7 +47,7 @@
         android:id="@+id/imageView"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintEnd_toStartOf="@+id/textView1"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -68,83 +68,91 @@
 
     <Button
         android:id="@+id/button_amphibians"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
         android:text="@string/home_category1"
         android:theme="@style/styleButtons"
-        app:layout_constraintBottom_toTopOf="@+id/button_reptiles"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_reptiles"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/button_reptiles"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/home_category2"
-        android:theme="@style/styleButtons"
-        app:layout_constraintBottom_toTopOf="@+id/button_fish"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_amphibians" />
-
-    <Button
         android:id="@+id/button_fish"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+
         android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
         android:text="@string/home_category3"
         android:theme="@style/styleButtons"
-        app:layout_constraintBottom_toTopOf="@+id/button_birds"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_reptiles" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_reptiles"
+        app:layout_constraintTop_toTopOf="@+id/button_reptiles" />
+
+    <Button
+        android:id="@+id/button_reptiles"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/home_category2"
+        android:theme="@style/styleButtons"
+        app:layout_constraintEnd_toStartOf="@+id/button_fish"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_amphibians"
+        app:layout_constraintTop_toTopOf="@+id/button_amphibians" />
 
     <Button
         android:id="@+id/button_birds"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
         android:text="@string/home_category4"
         android:theme="@style/styleButtons"
-        app:layout_constraintBottom_toTopOf="@+id/button_mammals"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_fish" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_mammals"
+        app:layout_constraintTop_toTopOf="@+id/button_mammals" />
 
     <Button
         android:id="@+id/button_mammals"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="@string/home_category5"
         android:theme="@style/styleButtons"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_birds"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_birds" />
+        app:layout_constraintTop_toBottomOf="@+id/button_amphibians" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
