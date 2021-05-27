@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/home_title2"
-        android:textColor="#8D9B6A"
+        android:textColor="@color/green"
         android:textSize="36sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView1"
         app:layout_constraintEnd_toEndOf="parent"

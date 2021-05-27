@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.AnimalPedia" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/verrosgrren</item>
+        <item name="colorPrimary">@color/green</item>
         <item name="colorPrimaryVariant">@color/brown</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
@@ -10,20 +10,27 @@
         <item name="colorSecondaryVariant">@color/blueButtonDark</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
         <!-- Navigation bar color. -->
         <item name="bottomAppBarStyle">@color/white</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/primaryTitleColorNight</item>
-        <item name="android:windowBackground">@color/colorPrimaryNight</item>
+        <item name="android:windowBackground">@color/DarkBackground</item>
         <item name="android:buttonStyle">@style/styleButtons</item>
-
 
     </style>
 
     <style name="styleButtons" parent="Widget.AppCompat.Button.Colored">
         <item name="colorPrimary">@color/blueButton</item>
         <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="styleCardView" parent="CardView">
+        <item name="cardBackgroundColor">@color/colorPrimaryDarkNight</item>
+    </style>
+
+    <style name="styleHeaderView" parent="Widget.AppCompat.TextView">
+        <item name="background">@color/purple_200</item>
     </style>
     <!--
     <style name="splashScreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">

@@ -10,10 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AnimalPedia">
         <activity android:name=".AnimalView" />
-        <activity android:name=".Settings" />
+        <activity android:name=".Settings" android:theme="@style/Theme.AnimalPedia"/>
         <activity android:name=".ContinentView" />
-        <activity android:name=".CategoryView"
-            android:parentActivityName=".MainActivity"/><!--edww-->
+        <activity android:name=".CategoryView" />
         <activity android:name=".Map" />
         <activity android:name=".Favorites" />
         <activity android:name=".Search" />

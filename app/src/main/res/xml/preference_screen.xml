@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Display Settings">
+        <ListPreference
+            android:key="listPref_theme"
+            android:title="Select Theme"
+            android:defaultValue="default"
+            android:entries="@array/item_theme_entry"
+            android:entryValues="@array/item_theme_value" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="About us">
+        <Preference android:key="dialog_pref"
+            android:title="Info"
+            android:summary="Learn about us"/>
+        <Preference android:key="mail_pref"
+            android:title="Contact"
+            android:summary="Sent us your comments"/>
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>

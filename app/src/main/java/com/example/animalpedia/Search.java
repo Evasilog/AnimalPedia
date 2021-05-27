@@ -3,6 +3,7 @@ package com.example.animalpedia;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,22 +41,26 @@ public class Search extends AppCompatActivity {
         nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
                 switch (item.getItemId()){
                     case R.id.nav_home:
-                        finishAffinity();
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        intent = new Intent(getApplicationContext(),MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_search:
                         return true;
                     case R.id.nav_favorites:
-                        finishAffinity();
-                        startActivity(new Intent(getApplicationContext(),Favorites.class));
+                        intent = new Intent(getApplicationContext(),Favorites.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_map:
-                        finishAffinity();
-                        startActivity(new Intent(getApplicationContext(),Map.class));
+                        intent = new Intent(getApplicationContext(),Map.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                 }
@@ -88,6 +93,15 @@ public class Search extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        overridePendingTransition(0,0);
     }
 
 }

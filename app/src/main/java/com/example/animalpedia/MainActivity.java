@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -31,22 +33,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
                 switch (item.getItemId()){
                     case R.id.nav_home:
                         return true;
                     case R.id.nav_search:
-                        finishAffinity();
-                        startActivity(new Intent(getApplicationContext(),Search.class));
+                        intent = new Intent(getApplicationContext(),Search.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_favorites:
-                        finishAffinity();
-                        startActivity(new Intent(getApplicationContext(),Favorites.class));
+                        intent = new Intent(getApplicationContext(),Favorites.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_map:
-                        finishAffinity();
-                        startActivity(new Intent(getApplicationContext(),Map.class));
+                        intent = new Intent(getApplicationContext(),Map.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                 }
@@ -77,6 +83,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    int counter = 0;
+    @Override
+    public void onBackPressed() {
+        counter++;
+        if(counter == 1)
+            Toast.makeText(getApplicationContext(),"Press again to exit",Toast.LENGTH_LONG).show();
+        if(counter == 2)
+            finish();
+    }
+
+
 
     /**
      * Όταν πατηθεί ένα κουμπί απο την κεντρική οθόνη με τις κατηγορίες των ζώων
@@ -85,10 +102,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     @Override
     public void onClick(View v) {
-
         String buttonText = ((Button) v).getText().toString();
         Intent intent = new Intent(getBaseContext(),CategoryView.class);
         intent.putExtra("key",buttonText);
         startActivity(intent);
+        overridePendingTransition(0,0);
     }
 }

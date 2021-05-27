@@ -16,7 +16,7 @@ import java.util.List;
 public class MyDBHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "Animal12vv.db";
+    private static final String DATABASE_NAME = "Animal.db";
 
 
     MyDBHandler(Context context, SQLiteDatabase.CursorFactory factory){

@@ -40,22 +40,26 @@ public class Favorites extends AppCompatActivity {
         nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
                 switch (item.getItemId()){
                     case R.id.nav_home:
-                        finishAffinity();
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        intent = new Intent(getApplicationContext(),MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_search:
-                        finishAffinity();
-                        startActivity(new Intent(getApplicationContext(),Search.class));
+                        intent = new Intent(getApplicationContext(),Search.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_favorites:
                         return true;
                     case R.id.nav_map:
-                        finishAffinity();
-                        startActivity(new Intent(getApplicationContext(),Map.class));
+                        intent = new Intent(getApplicationContext(),Map.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                 }
@@ -83,8 +87,14 @@ public class Favorites extends AppCompatActivity {
         }
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        overridePendingTransition(0,0);
+    }
 
     public void initializeAnimalRecyclerAdapter() {
         adapter = new RecyclerAdapter(favAnimals,2);
