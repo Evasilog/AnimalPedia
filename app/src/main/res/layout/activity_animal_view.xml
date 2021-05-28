@@ -18,15 +18,20 @@
         app:layout_constraintTop_toTopOf="parent"
         android:gravity="center_horizontal" />
 
-    <ImageView
+    <com.zolad.zoominimageview.ZoomInImageView
         android:id="@+id/an_image"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guidelineVertical"
         app:layout_constraintTop_toBottomOf="@+id/an_name" />
 
     <View
@@ -43,13 +48,14 @@
 
     <TextView
         android:id="@+id/an_class"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="40dp"
-        android:gravity="center_vertical"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
         android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineVertical"
         app:layout_constraintStart_toEndOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/an_name" />
 
@@ -67,13 +73,14 @@
 
     <TextView
         android:id="@+id/an_continent"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="40dp"
-        android:gravity="center_vertical"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
         android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineVertical"
         app:layout_constraintStart_toEndOf="@+id/view2"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
@@ -100,6 +107,20 @@
         app:layout_constraintTop_toBottomOf="@+id/youtube"
         android:contentDescription="love" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".42" />
+
     <TextView
         android:id="@+id/an_details"
         android:layout_width="0dp"
@@ -109,12 +130,13 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
         android:scrollbars="vertical"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/an_image" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

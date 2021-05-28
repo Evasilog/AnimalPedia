@@ -13,16 +13,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zolad.zoominimageview.ZoomInImageView;
+
 public class AnimalView extends AppCompatActivity {
-    public MyDBHandler dbHandler;
-    Animal an;
-    TextView anName;
-    ImageView anImage;
-    TextView anClass;
-    TextView anContinent;
-    ImageView youtube;
-    ImageView love;
-    TextView anDetails;
+    private MyDBHandler dbHandler;
+    private Animal an;
+    private TextView anName;
+    private ZoomInImageView anImage;
+    private TextView anClass;
+    private TextView anContinent;
+    private ImageView youtube;
+    private ImageView love;
+    private TextView anDetails;
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +75,20 @@ public class AnimalView extends AppCompatActivity {
                 dbHandler.changeFavoriteState(an);
                 if (isFav){
                     love.setColorFilter(getResources().getColor(android.R.color.darker_gray));
-                    Toast.makeText(getApplicationContext(),"Animal removed from your favorites",Toast.LENGTH_LONG).show();
+                    if(toast != null){
+                        toast.cancel();
+                    }
+                    toast = Toast.makeText(getApplicationContext(),"Animal removed from your favorites",Toast.LENGTH_SHORT);
+                    toast.show();
+
                 }
                 else {
                     love.setColorFilter(Color.RED);
-                    Toast.makeText(getApplicationContext(),"Animal added to your favorites!",Toast.LENGTH_LONG).show();
+                    if(toast != null) {
+                        toast.cancel();
+                    }
+                    toast = Toast.makeText(getApplicationContext(),"Animal added to your favorites!",Toast.LENGTH_SHORT);
+                    toast.show();
                 }
             }
         });

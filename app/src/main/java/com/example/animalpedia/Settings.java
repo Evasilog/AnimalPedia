@@ -1,29 +1,22 @@
 package com.example.animalpedia;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-
-import android.app.ActionBar;
-import android.content.Context;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.preference.DialogPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 
-import java.util.List;
 
 public class Settings extends PreferenceActivity {
 
     ListPreference listPreference;
-    DialogPreference dialogPreference;
+    Preference infoPreference;
     Preference mailPreference;
 
     //public static final String MyPREFERENCES = "nightModePrefs";
@@ -36,6 +29,7 @@ public class Settings extends PreferenceActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_settings);
         addPreferencesFromResource(R.xml.preference_screen);
+        setTheme(R.style.SettingsTheme);
         //ActionBar actionBar = getActionBar();
         //actionBar.setTitle("Settings");
         //actionBar.setDisplayHomeAsUpEnabled(true);
@@ -65,7 +59,6 @@ public class Settings extends PreferenceActivity {
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                             startActivity(getIntent());
                             overridePendingTransition(0,0);
-
                             break;
                         case "light":
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -80,17 +73,15 @@ public class Settings extends PreferenceActivity {
                 return true;
             }
         });
-        /*
-        dialogPreference = (DialogPreference) getPreferenceScreen().findPreference("dialog_pref");
-        dialogPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+
+        infoPreference = findPreference("dialog_pref");
+        infoPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                TextView textView = new TextView(preference.getContext());
-                textView.setText("Eimaste mpla mpla mpla");
+                openInfo("Info", getString(R.string.info_message));
                 return true;
             }
         });
-         */
 
         mailPreference = findPreference("mail_pref");
         mailPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -137,6 +128,21 @@ public class Settings extends PreferenceActivity {
         });
 
          */
+    }
+
+
+    private void openInfo(String title, String message){
+        AlertDialog alertDialog = new AlertDialog.Builder(Settings.this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        alertDialog.show();
     }
 
     /*

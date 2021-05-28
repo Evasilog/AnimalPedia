@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" >
 
         <View
+            android:id="@+id/globe"
             android:layout_width="36sp"
             android:layout_height="36sp"
             android:layout_marginEnd="2dp"

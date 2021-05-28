@@ -90,6 +90,7 @@ public class Map extends AppCompatActivity implements View.OnClickListener {
         String buttonText = ((Button) v).getText().toString();
         Intent intent = new Intent(getBaseContext(),ContinentView.class);
         intent.putExtra("key",buttonText);
+        intent.putExtra("type", "Continent");
         startActivity(intent);
         overridePendingTransition(0,0);
     }

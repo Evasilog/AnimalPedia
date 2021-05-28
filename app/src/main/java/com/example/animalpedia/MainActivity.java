@@ -2,8 +2,13 @@ package com.example.animalpedia;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.ListPreference;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +29,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         //setTheme(R.style.Theme_AnimalPedia);
         setContentView(R.layout.activity_main);
+
+
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+
+        String theme = sharedPreferences.getString("listPref_theme", "false");
+        if ("default".equals(theme)){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        } else if ("light".equals(theme)){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else if ("dark".equals(theme)) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
 
         dbHandler = new MyDBHandler(this, null);//αρχικοποίηση της βάσης
 
@@ -79,8 +98,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(getApplicationContext(),Settings.class));
             }
         });
-
-
     }
 
     int counter = 0;
@@ -88,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onBackPressed() {
         counter++;
         if(counter == 1)
-            Toast.makeText(getApplicationContext(),"Press again to exit",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Press again to exit",Toast.LENGTH_SHORT).show();
         if(counter == 2)
             finish();
     }
@@ -103,8 +120,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         String buttonText = ((Button) v).getText().toString();
-        Intent intent = new Intent(getBaseContext(),CategoryView.class);
+        Intent intent = new Intent(getBaseContext(), ContinentView.class);
         intent.putExtra("key",buttonText);
+        intent.putExtra("type", "Category");
         startActivity(intent);
         overridePendingTransition(0,0);
     }
