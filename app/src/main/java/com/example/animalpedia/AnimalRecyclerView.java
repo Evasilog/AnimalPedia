@@ -7,34 +7,38 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.List;
-public class CategoryView extends AppCompatActivity {
 
-    public TextView title_page;
-    public String titleText;
+public class AnimalRecyclerView extends AppCompatActivity {
 
-    public RecyclerView recyclerView;
-    public RecyclerView.LayoutManager layoutManager;
-    public RecyclerView.Adapter adapter;
+    private TextView title_page;
+    private String titleText;
+    private String type;
 
-    MyDBHandler dbHandler;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter adapter;
+
+    private MyDBHandler dbHandler;
     private List<Animal> animals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category_view);
+        setContentView(R.layout.activity_animal_recycler_view);
 
         Bundle extra = getIntent().getExtras();
         if (extra != null){
             titleText = extra.getString("key");
+            type = extra.getString("type");
         }
 
         dbHandler = new MyDBHandler(this, null);
-        animals = dbHandler.getAnimalCategory(titleText, 1);
-        //animals = dbHandler.getAnimalCategory("Amphibian");
+
 
         recyclerView = findViewById(R.id.recycler_view);
 
@@ -42,35 +46,51 @@ public class CategoryView extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        initializeAnimalRecyclerAdapter();
 
         title_page = findViewById(R.id.page_title);
         title_page.setText(titleText);
+        View view = findViewById(R.id.globe);
 
         BottomNavigationView nav = findViewById(R.id.navigation_bar);
-        nav.setSelectedItemId(R.id.nav_home);
+
+        if(!type.equals("Continent")) {
+            ((ViewGroup) view.getParent()).removeView(view);
+            animals = dbHandler.getAnimalCategory(titleText, 1);
+            nav.setSelectedItemId(R.id.nav_home);
+        }else{
+            animals = dbHandler.getAnimalCategory(titleText, 0);
+            nav.setSelectedItemId(R.id.nav_map);
+        }
+
+        initializeAnimalRecyclerAdapter();
 
         nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
                 switch (item.getItemId()){
                     case R.id.nav_home:
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        intent = new Intent(getApplicationContext(),MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_search:
-                        finishAffinity();
-                        startActivity(new Intent(getApplicationContext(),Search.class));
+                        intent = new Intent(getApplicationContext(),Search.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_favorites:
-                        finishAffinity();
-                        startActivity(new Intent(getApplicationContext(),Favorites.class));
+                        intent = new Intent(getApplicationContext(),Favorites.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_map:
-                        finishAffinity();
-                        startActivity(new Intent(getApplicationContext(),Map.class));
+                        intent = new Intent(getApplicationContext(),Map.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                 }
@@ -80,13 +100,9 @@ public class CategoryView extends AppCompatActivity {
 
     }
 
-
     // Initializing Array adapter for the beer list
-    public void initializeAnimalRecyclerAdapter()
-    {
+    public void initializeAnimalRecyclerAdapter() {
         adapter = new RecyclerAdapter(animals, 1);
         recyclerView.setAdapter(adapter);
     }
-
-
 }

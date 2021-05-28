@@ -3,16 +3,11 @@ package com.example.animalpedia;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -88,7 +83,7 @@ public class Map extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         String buttonText = ((Button) v).getText().toString();
-        Intent intent = new Intent(getBaseContext(),ContinentView.class);
+        Intent intent = new Intent(getBaseContext(), AnimalRecyclerView.class);
         intent.putExtra("key",buttonText);
         intent.putExtra("type", "Continent");
         startActivity(intent);

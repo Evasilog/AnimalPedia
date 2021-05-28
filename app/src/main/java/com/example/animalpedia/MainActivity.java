@@ -7,9 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.ListPreference;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -120,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         String buttonText = ((Button) v).getText().toString();
-        Intent intent = new Intent(getBaseContext(), ContinentView.class);
+        Intent intent = new Intent(getBaseContext(), AnimalRecyclerView.class);
         intent.putExtra("key",buttonText);
         intent.putExtra("type", "Category");
         startActivity(intent);
