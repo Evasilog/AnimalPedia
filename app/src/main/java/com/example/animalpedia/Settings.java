@@ -1,41 +1,57 @@
 package com.example.animalpedia;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.view.MenuItem;
 
 
-public class Settings extends PreferenceActivity {
-
-    ListPreference listPreference;
-    Preference infoPreference;
-    Preference mailPreference;
-
-    //public static final String MyPREFERENCES = "nightModePrefs";
-    //public static final String KEY_ISNIGHTMODE = "isNightMode";
-    SharedPreferences sharedPreferences;
+public class Settings extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_settings);
-        addPreferencesFromResource(R.xml.preference_screen);
-        setTheme(R.style.SettingsTheme);
+        setContentView(R.layout.activity_settings);
+        //addPreferencesFromResource(R.xml.preference_screen);
+        //setTheme(R.style.SettingsTheme);
         //ActionBar actionBar = getActionBar();
         //actionBar.setTitle("Settings");
         //actionBar.setDisplayHomeAsUpEnabled(true);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        //sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        listPreference = (ListPreference) findPreference("listPref_theme");
+        // below line is to change
+        // the title of our action bar.
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle("Settings");
+
+        // below line is used to check if
+        // frame layout is empty or not.
+        if (findViewById(R.id.idFrameLayout) != null) {
+            if (savedInstanceState != null) {
+                return;
+            }
+            // below line is to inflate our fragment.
+            getFragmentManager().beginTransaction().add(R.id.idFrameLayout, new SettingsFragment()).commit();
+        }
+
+
+       /* listPreference = (ListPreference) findPreference("listPref_theme");
 
         String theme = sharedPreferences.getString("listPref_theme", "false");
         if ("default".equals(theme)){
@@ -130,6 +146,14 @@ public class Settings extends PreferenceActivity {
          */
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+                finish();
+                return true;
+
+    }
 
     private void openInfo(String title, String message){
         AlertDialog alertDialog = new AlertDialog.Builder(Settings.this)

@@ -21,10 +21,10 @@
     </style>
 
     <style name="SettingsTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="android:background">@color/black</item>
+        <item name="android:windowBackground">@color/DarkBackground</item>
         <item name="android:colorForeground">#aaaaaa</item>
-
-        <item name="colorPrimary">@color/green</item>
+        <item name="android:textColor">@color/primaryTitleColorNight</item>
+        <item name="colorPrimary">@color/blueButton</item>
         <item name="colorPrimaryVariant">@color/brown</item>
         <item name="colorOnPrimary">@color/black</item>
         <item name="colorSecondary">@color/blueButton</item>
