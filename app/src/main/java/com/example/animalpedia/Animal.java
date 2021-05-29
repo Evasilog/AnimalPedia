@@ -1,10 +1,8 @@
 package com.example.animalpedia;
 
-import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
 
 public class Animal implements Parcelable {
     private String animalID;
@@ -15,6 +13,7 @@ public class Animal implements Parcelable {
     private byte[] image;
     private String link;
     private boolean favorite;
+
     public Animal(){
 
     }

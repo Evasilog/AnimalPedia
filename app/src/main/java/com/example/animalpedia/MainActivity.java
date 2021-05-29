@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public Button buttonAmphibians,buttonReptiles,buttonFish,buttonBirds,buttonMammals;
     public MyDBHandler dbHandler;
-
+    int counter = 0;
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
 
-
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
 
         String theme = sharedPreferences.getString("listPref_theme", "false");
         if ("default".equals(theme)){
@@ -98,16 +97,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    int counter = 0;
+
     @Override
     public void onBackPressed() {
         counter++;
-        if(counter == 1)
-            Toast.makeText(getApplicationContext(),"Press again to exit",Toast.LENGTH_SHORT).show();
-        if(counter == 2)
-            finish();
+        if(counter == 1) {
+            toast = Toast.makeText(getApplicationContext(), "Press again to exit", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        if(counter == 2) {
+            if(toast != null)
+                toast.cancel();
+            finishAffinity();
+        }
     }
-
 
 
     /**

@@ -2,25 +2,15 @@ package com.example.animalpedia;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.SearchView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Search extends AppCompatActivity {
@@ -45,7 +35,7 @@ public class Search extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.nav_home:
                         intent = new Intent(getApplicationContext(),MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
@@ -93,13 +83,20 @@ public class Search extends AppCompatActivity {
                 return false;
             }
         });
+
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.onActionViewExpanded();
+            }
+        });
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         overridePendingTransition(0,0);
     }

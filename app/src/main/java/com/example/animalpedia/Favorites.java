@@ -44,7 +44,7 @@ public class Favorites extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.nav_home:
                         intent = new Intent(getApplicationContext(),MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
@@ -55,6 +55,7 @@ public class Favorites extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_favorites:
+
                         return true;
                     case R.id.nav_map:
                         intent = new Intent(getApplicationContext(),Map.class);
@@ -91,7 +92,7 @@ public class Favorites extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         overridePendingTransition(0,0);
     }
@@ -102,6 +103,7 @@ public class Favorites extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
+
 
     @Override
     protected void onRestart() {

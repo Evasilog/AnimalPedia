@@ -46,7 +46,7 @@ public class Map extends AppCompatActivity implements View.OnClickListener {
                 switch (item.getItemId()){
                     case R.id.nav_home:
                         intent = new Intent(getApplicationContext(),MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
@@ -75,7 +75,7 @@ public class Map extends AppCompatActivity implements View.OnClickListener {
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         overridePendingTransition(0,0);
     }

@@ -71,7 +71,7 @@ public class AnimalRecyclerView extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.nav_home:
                         intent = new Intent(getApplicationContext(),MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
@@ -97,7 +97,21 @@ public class AnimalRecyclerView extends AppCompatActivity {
                 return false;
             }
         });
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0,0);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
+        overridePendingTransition(0,0);
+        startActivity(getIntent());
+        overridePendingTransition(0,0);
     }
 
     // Initializing Array adapter for the beer list
