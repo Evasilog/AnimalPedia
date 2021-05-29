@@ -30,6 +30,14 @@
     <string name="title_favorites_button">Favorites</string>
     <string name="title_map_button">Map</string>
     <string name="info_title">Info</string>
+    <string name="contact">Contact</string>
+    <string name="social_media">Instagram</string>
+    <string name="display_settings">Display Settings</string>
+    <string name="select_theme">Select Theme</string>
+    <string name="about_us">About Us</string>
+    <string name="info_title_summary">Learn about us</string>
+    <string name="contact_summary">Sent us your comments</string>
+    <string name="follow_us_summary">Follow us</string>
     <string name="info_message">We are a group of undergraduate students at computer science department of Aristotle University of Thessaloniki.
     \n\nDevelopers:\nVasilogamvros Evangelos\nVerros Stelios\nStravelas Andreas</string>
     <!-- TODO: Remove or change this placeholder text -->

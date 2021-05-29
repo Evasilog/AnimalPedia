@@ -86,6 +86,17 @@ public class SettingsFragment extends PreferenceFragment {
             }
         });
 
+        //ανακατεύθυνση του χρήστη στα social media της εφαρμογής
+        Preference socialMediaPreference = findPreference("social_pref");
+        socialMediaPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Uri uri = Uri.parse("https://instagram.com/animalpediaapp");
+                startActivity(new Intent(Intent.ACTION_VIEW, uri));
+                return false;
+            }
+        });
+
     }
 
     /**
