@@ -17,11 +17,13 @@
         <Preference android:key="mail_pref"
             android:title="@string/contact"
             android:summary="@string/contact_summary"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/our_social_media">
         <Preference android:key="social_pref"
             android:title="@string/social_media"
             android:summary="@string/follow_us_summary"/>
     </PreferenceCategory>
-
 
 
 </PreferenceScreen>

@@ -38,6 +38,7 @@
     <string name="info_title_summary">Learn about us</string>
     <string name="contact_summary">Sent us your comments</string>
     <string name="follow_us_summary">Follow us</string>
+    <string name="our_social_media">Our Social Media</string>
     <string name="info_message">We are a group of undergraduate students at computer science department of Aristotle University of Thessaloniki.
     \n\nDevelopers:\nVasilogamvros Evangelos\nVerros Stelios\nStravelas Andreas</string>
     <!-- TODO: Remove or change this placeholder text -->
