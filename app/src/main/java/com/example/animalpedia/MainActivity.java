@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int counter = 0;
     private Toast toast;
 
+    private BottomNavigationView nav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
-        BottomNavigationView nav = findViewById(R.id.navigation_bar);
+        nav = findViewById(R.id.navigation_bar);
         nav.setSelectedItemId(R.id.nav_home);
 
 
@@ -114,6 +116,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        nav.setSelectedItemId(R.id.nav_home);
+    }
 
     /**
      * Όταν πατηθεί ένα κουμπί απο την κεντρική οθόνη με τις κατηγορίες των ζώων ξεκινάει νέο activity
