@@ -13,36 +13,43 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.List;
 
+
+/**
+ * Αυτή η κλάση διαχειρίζεται το activity που εμφανίζεται επιλέγοντας μια κατηγορία από το Home ή επιλέγοντας
+ * μια ήπειρο από το Map
+ */
+
 public class AnimalRecyclerView extends AppCompatActivity {
 
-    private TextView title_page;
-    private String titleText;
-    private String type;
+    private String titleText; //το όνομα της ηπείρου ή της κατηγορίας του ζώου
+    private String type; //μεταβλητή για την διάκριση μεταξύ ηπείρου και κατηγορίας
 
-    private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter adapter;
-
-    private MyDBHandler dbHandler;
-    private List<Animal> animals;
+    private List<Animal> animals; //λίστα που περιέχει τα ζώα για εμφάνιση
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_animal_recycler_view);
+        setContentView(R.layout.activity_animal_recycler_view); //σύνδεση του layout με τον κώδικα
 
+
+        TextView title_page; //περίεχει το όνομα της κατηγορίας ή της ηπείρου των ζώων
+        RecyclerView.LayoutManager layoutManager; //ορίζει την διάταξη των αντικειμένων της λίστας
+        MyDBHandler dbHandler = new MyDBHandler(this, null); //αρχικοποίηση της βάσης
+        RecyclerView recyclerView; //UI στοιχείο για την εμφάνιση των ζώων
+        RecyclerView.Adapter adapter; //αντικείμενο που συνδέει τα δεδομένα κάθε κάρτας ενός ζώου με τη διάταξη της κάρτας του
+
+
+
+        //λήψη των δεδομένων από το προηγούμενο activity
         Bundle extra = getIntent().getExtras();
         if (extra != null){
             titleText = extra.getString("key");
             type = extra.getString("type");
         }
 
-        dbHandler = new MyDBHandler(this, null);
-
-
         recyclerView = findViewById(R.id.recycler_view);
 
-        //Set the layout of the items in the RecyclerView
+        //ορισμός του layout των αντικειμένων στο RecyclerView
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -53,17 +60,22 @@ public class AnimalRecyclerView extends AppCompatActivity {
 
         BottomNavigationView nav = findViewById(R.id.navigation_bar);
 
+        //έλεγχος για την κατάλληλη εμφάνιση του τίτλου
+        //και επιλογή του αντίστοιχου αντικειμένουν από το μενού
         if(!type.equals("Continent")) {
             ((ViewGroup) view.getParent()).removeView(view);
-            animals = dbHandler.getAnimalCategory(titleText, 1);
+            animals = dbHandler.getAnimals(titleText, 1);
             nav.setSelectedItemId(R.id.nav_home);
         }else{
-            animals = dbHandler.getAnimalCategory(titleText, 0);
+            animals = dbHandler.getAnimals(titleText, 0);
             nav.setSelectedItemId(R.id.nav_map);
         }
 
-        initializeAnimalRecyclerAdapter();
+        //αρχικοποίηση των στοιχείων στο adapter
+        adapter = new RecyclerAdapter(animals, 1);
+        recyclerView.setAdapter(adapter);
 
+        //ελεγχος δραστηριότητας στο navigation bar
         nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -112,11 +124,5 @@ public class AnimalRecyclerView extends AppCompatActivity {
         overridePendingTransition(0,0);
         startActivity(getIntent());
         overridePendingTransition(0,0);
-    }
-
-    // Initializing Array adapter for the beer list
-    public void initializeAnimalRecyclerAdapter() {
-        adapter = new RecyclerAdapter(animals, 1);
-        recyclerView.setAdapter(adapter);
     }
 }

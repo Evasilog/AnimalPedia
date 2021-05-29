@@ -10,33 +10,25 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import com.example.animalpedia.R;
-
+/**
+ * Αυτή η κλάση διαχειρίζεται το fragment για τις ρυθμίσεις
+ */
 public class SettingsFragment extends PreferenceFragment {
-
-    ListPreference listPreference;
-    Preference infoPreference;
-    Preference mailPreference;
-
-    //public static final String MyPREFERENCES = "nightModePrefs";
-    //public static final String KEY_ISNIGHTMODE = "isNightMode";
-    SharedPreferences sharedPreferences;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // below line is used to add preference
-        // fragment from our xml folder.
-        addPreferencesFromResource(R.xml.preference_screen);
+        addPreferencesFromResource(R.xml.preference_screen); //σύνδεση με το preference_screen.xml
 
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        listPreference = (ListPreference) findPreference("listPref_theme");
+        ListPreference listPreference = (ListPreference) findPreference("listPref_theme");
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        //έλεγχος και εφαρμογή του κατάλληλου θέματος
         String theme = sharedPreferences.getString("listPref_theme", "false");
         if ("default".equals(theme)) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
@@ -49,6 +41,7 @@ public class SettingsFragment extends PreferenceFragment {
             listPreference.setSummary(listPreference.getEntry());
         }
 
+        //αν ο χρήστης αλλάξει το θέμα γίνεται η εφαρμογή αυτού που επέλεξε
         listPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -57,8 +50,6 @@ public class SettingsFragment extends PreferenceFragment {
                     switch (items) {
                         case "default":
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                            //startActivity(getIntent());
-                            //overridePendingTransition(0, 0);
                             break;
                         case "light":
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -74,16 +65,18 @@ public class SettingsFragment extends PreferenceFragment {
             }
         });
 
-        infoPreference = findPreference("dialog_pref");
+        //εμφάνιση dialog παραθύρου
+        Preference infoPreference = findPreference("dialog_pref");
         infoPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                openInfo("Info", getString(R.string.info_message));
+                openInfo(getString(R.string.info_title), getString(R.string.info_message));
                 return true;
             }
         });
 
-        mailPreference = findPreference("mail_pref");
+        //ανακατεύθυνση του χρήστη στην εφαρμοφή email του κινητού
+        Preference mailPreference = findPreference("mail_pref");
         mailPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -95,7 +88,11 @@ public class SettingsFragment extends PreferenceFragment {
 
     }
 
-
+    /**
+     * διαχείριση του dialog παραθύρου
+     * @param title ο τίτλος του παραθύρου
+     * @param message το μήνυμα του παραθύρου
+     */
     private void openInfo(String title, String message){
         AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                 .setTitle(title)

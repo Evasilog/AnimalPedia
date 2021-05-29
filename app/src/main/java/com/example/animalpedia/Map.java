@@ -2,43 +2,47 @@ package com.example.animalpedia;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+/**
+ * Αυτή η κλάση διαχειρίζεται το activity με τον χάρτη για την εύρεση ζώων ανά ήπειρο
+ */
 
 public class Map extends AppCompatActivity implements View.OnClickListener {
 
-    Button b1,b2,b3,b4,b5,b6,b7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
+        setContentView(R.layout.activity_map); //σύνδεση του layout με τον κώδικα
 
-        b1 = findViewById(R.id.button_south_america);
-        b2 = findViewById(R.id.button_north_america);
-        b3 = findViewById(R.id.button_europe);
-        b4 = findViewById(R.id.button_africa);
-        b5 = findViewById(R.id.button_asia);
-        b6 = findViewById(R.id.button_oceania);
-        b7 = findViewById(R.id.button_antarctica);
+        Button southAmerica, northAmerica, europe, africa, asia, oceania, antarctica;
 
-        b1.setOnClickListener(this);
-        b2.setOnClickListener(this);
-        b3.setOnClickListener(this);
-        b4.setOnClickListener(this);
-        b5.setOnClickListener(this);
-        b6.setOnClickListener(this);
-        b7.setOnClickListener(this);
+        southAmerica = findViewById(R.id.button_south_america);
+        northAmerica = findViewById(R.id.button_north_america);
+        europe = findViewById(R.id.button_europe);
+        africa = findViewById(R.id.button_africa);
+        asia = findViewById(R.id.button_asia);
+        oceania = findViewById(R.id.button_oceania);
+        antarctica = findViewById(R.id.button_antarctica);
+
+        southAmerica.setOnClickListener(this);
+        northAmerica.setOnClickListener(this);
+        europe.setOnClickListener(this);
+        africa.setOnClickListener(this);
+        asia.setOnClickListener(this);
+        oceania.setOnClickListener(this);
+        antarctica.setOnClickListener(this);
 
         BottomNavigationView nav = findViewById(R.id.navigation_bar);
         nav.setSelectedItemId(R.id.nav_map);
 
+        //ελεγχος δραστηριότητας στο navigation bar
         nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -80,6 +84,10 @@ public class Map extends AppCompatActivity implements View.OnClickListener {
         overridePendingTransition(0,0);
     }
 
+    /**
+     * Όταν πατηθεί ένα διάφανο κουμπί μιας ηπείρου απο το χάρτη ξεκινάει νέο activity
+     * @param v το αντίστοιχο κουμπί που πατάει ο χρήστης
+     */
     @Override
     public void onClick(View v) {
         String buttonText = ((Button) v).getText().toString();

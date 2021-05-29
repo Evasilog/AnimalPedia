@@ -9,25 +9,66 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.List;
 
+/**
+ * Αυτή η κλάση διαχειρίζεται το activity για την αναζήτηση ζώων
+ */
+
 public class Search extends AppCompatActivity {
     private RecyclerAdapter adapter;
-    private RecyclerView recyclerView;
+
     private SearchView searchView;
     private List<Animal> animals;
-    private MyDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);//search
+        setContentView(R.layout.activity_search); //σύνδεση του layout με τον κώδικα
 
         BottomNavigationView nav = findViewById(R.id.navigation_bar);
         nav.setSelectedItemId(R.id.nav_search);
 
+
+        MyDBHandler dbHandler = new MyDBHandler(this, null); //αρχικοποίηση της βάσης
+        animals = dbHandler.getAnimals(null, 2);
+
+        RecyclerView recyclerView = findViewById(R.id.search_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        adapter = new RecyclerAdapter(animals,1);
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
+        searchView = findViewById(R.id.searchBar);
+        searchView.setQueryHint("Search an animal");
+
+        //παίρνουμε τη συμβολοσειρά που πληκτρολογεί ο χρήστης
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText); //παίρνουμε τα στοιχεία που θα εμφανίσει η λίστα ανάλογα με το input του χρήστη
+                return false;
+            }
+        });
+
+        //όταν ο χρήστης κάνει κλικ σε οποιοδήποτε σημείο του searchView θα ανοιξεί το πληκτρολογίο για το input του
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.onActionViewExpanded();
+            }
+        });
+
+
+        //ελεγχος δραστηριότητας στο navigation bar
         nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -55,39 +96,6 @@ public class Search extends AppCompatActivity {
                         return true;
                 }
                 return false;
-            }
-        });
-
-        dbHandler = new MyDBHandler(this, null);
-        animals = dbHandler.getAnimalCategory(null, 2);
-
-        recyclerView = findViewById(R.id.search_recycler_view);
-        recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        adapter = new RecyclerAdapter(animals,1);
-
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
-
-        searchView = findViewById(R.id.searchBar);
-        searchView.setQueryHint("Search an animal");
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
-                return false;
-            }
-        });
-
-        searchView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchView.onActionViewExpanded();
             }
         });
     }

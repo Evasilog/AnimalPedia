@@ -3,6 +3,9 @@ package com.example.animalpedia;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * Κλάση Animal που αποθηκεύει τα στοιχεία ενός ζώου.
+ */
 
 public class Animal implements Parcelable {
     private String animalID;
@@ -29,6 +32,8 @@ public class Animal implements Parcelable {
         this.favorite = favorite;
     }
 
+    /** Οι μέθοδοι του Parcelable χρησιμοποιήθηκαν για την μετάβαση ενός αντικειμένουν της
+     * κλάσης από activity σε activity */
     protected Animal(Parcel in) {
         animalID = in.readString();
         animalClass = in.readString();
@@ -69,6 +74,8 @@ public class Animal implements Parcelable {
         }
     };
 
+
+    /** Getters/ Setters για τον χειρισμό των πεδίων της κλάσης */
     public String getAnimalID() {
         return this.animalID;
     }

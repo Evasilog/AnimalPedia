@@ -3,7 +3,6 @@ package com.example.animalpedia;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,25 +12,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+/**
+ * Αυτή η κλάση διαχειρίζεται το main activity με τις κατηγορίες των ζώων
+ */
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public Button buttonAmphibians,buttonReptiles,buttonFish,buttonBirds,buttonMammals;
-    public MyDBHandler dbHandler;
-    int counter = 0;
+    private int counter = 0;
     private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setTheme(R.style.Theme_AnimalPedia);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main); //σύνδεση του layout με τον κώδικα
 
+        Button buttonAmphibians,buttonReptiles,buttonFish,buttonBirds,buttonMammals;
 
+        //έλεγχος και εφαρμογή του κατάλληλου θέματος
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
         String theme = sharedPreferences.getString("listPref_theme", "false");
         if ("default".equals(theme)){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
@@ -41,11 +41,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }
 
-        dbHandler = new MyDBHandler(this, null);//αρχικοποίηση της βάσης
 
         BottomNavigationView nav = findViewById(R.id.navigation_bar);
         nav.setSelectedItemId(R.id.nav_home);
 
+
+        buttonAmphibians = findViewById(R.id.button_amphibians);
+        buttonReptiles = findViewById(R.id.button_reptiles);
+        buttonFish = findViewById(R.id.button_fish);
+        buttonBirds = findViewById(R.id.button_birds);
+        buttonMammals = findViewById(R.id.button_mammals);
+
+        buttonAmphibians.setOnClickListener(this);
+        buttonReptiles.setOnClickListener(this);
+        buttonFish.setOnClickListener(this);
+        buttonBirds.setOnClickListener(this);
+        buttonMammals.setOnClickListener(this);
+
+        //κουμπί ρυθμίσεων
+        ImageButton iB = findViewById(R.id.settings);
+        iB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Settings.class));
+            }
+        });
+
+        //ελεγχος δραστηριότητας στο navigation bar
         nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -75,26 +97,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return false;
             }
         });
-
-        buttonAmphibians = findViewById(R.id.button_amphibians);
-        buttonReptiles = findViewById(R.id.button_reptiles);
-        buttonFish = findViewById(R.id.button_fish);
-        buttonBirds = findViewById(R.id.button_birds);
-        buttonMammals = findViewById(R.id.button_mammals);
-
-        buttonAmphibians.setOnClickListener(this);
-        buttonReptiles.setOnClickListener(this);
-        buttonFish.setOnClickListener(this);
-        buttonBirds.setOnClickListener(this);
-        buttonMammals.setOnClickListener(this);
-
-        ImageButton iB = findViewById(R.id.settings);
-        iB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Settings.class));
-            }
-        });
     }
 
 
@@ -114,15 +116,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     /**
-     * Όταν πατηθεί ένα κουμπί απο την κεντρική οθόνη με τις κατηγορίες των ζώων
-     * ξεκινάει νέο activity
+     * Όταν πατηθεί ένα κουμπί απο την κεντρική οθόνη με τις κατηγορίες των ζώων ξεκινάει νέο activity
      * @param v το αντίστοιχο κουμπί που πατάει ο χρήστης
      */
     @Override
     public void onClick(View v) {
         String buttonText = ((Button) v).getText().toString();
         Intent intent = new Intent(getBaseContext(), AnimalRecyclerView.class);
-        intent.putExtra("key",buttonText);
+        intent.putExtra("key",buttonText); //αποστολή κειμένου του κουμπιού στο νέο activity
         intent.putExtra("type", "Category");
         startActivity(intent);
         overridePendingTransition(0,0);
