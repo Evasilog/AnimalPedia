@@ -11,15 +11,14 @@
 Home – Αρχική σελίδα με τις πέντε βασικές κατηγορίες ζώων, όπου επιλέγοντας μία από αυτές ο χρήστης ανακαλύπτει τα ζώα της. 
 Search – Σελίδα αναζήτησης ενός ζώου. 
 Favorites – Σελίδα με τα ζώα που έχει αποθηκεύσει ως αγαπημένα του ο χρήστης. 
-Map – Σελίδα με έναν χάρτη που επιλέγοντας μια ήπειρο ο χρήστης ανακαλύπτει τα ζώα αυτής. 
-<img src="https://user-images.githubusercontent.com/56198786/129361414-73592aef-ed4f-4909-9699-686110cf31fc.png" width="600">
+Map – Σελίδα με έναν χάρτη που επιλέγοντας μια ήπειρο ο χρήστης ανακαλύπτει τα ζώα αυτής.<br>
+<img src="https://user-images.githubusercontent.com/56198786/129361414-73592aef-ed4f-4909-9699-686110cf31fc.png" width="500">
 
-Screenshots των τεσσάρων βασικών οθονών:
-![Screenshot_20210529-215412_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361469-53863684-f429-424a-8652-119c0098033a.jpg | width=300)
-![Screenshot_20210529-215445_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361474-46663912-54f8-405d-8d77-a4d28ea16312.jpg | width=300)
-![Screenshot_20210529-215455_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361495-1c2e7fb8-515e-4a35-afa5-dd155a9faee8.jpg | width=300)
-![Screenshot_20210529-215508_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361512-e8c18da5-cc82-4095-b3dd-cdcdf55963f3.jpg | width=300)
-
+Screenshots των τεσσάρων βασικών οθονών:<br>
+<img src="https://user-images.githubusercontent.com/56198786/129361469-53863684-f429-424a-8652-119c0098033a.jpg" width="250">
+<img src="https://user-images.githubusercontent.com/56198786/129361474-46663912-54f8-405d-8d77-a4d28ea16312.jpg" width="250">
+<img src="https://user-images.githubusercontent.com/56198786/129361495-1c2e7fb8-515e-4a35-afa5-dd155a9faee8.jpg" width="250">
+<img src="https://user-images.githubusercontent.com/56198786/129361512-e8c18da5-cc82-4095-b3dd-cdcdf55963f3.jpg" width="250">
 
 # Δείτε επίσης
 Η εφαρμογή υποστηρίζει dark mode, το οποίο προσαρμόζεται με τη λειτουργία της συσκευής, ειδάλλως μπορεί να αλλάξει και από τις ρυθμίσεις.
@@ -27,7 +26,7 @@ Screenshots των τεσσάρων βασικών οθονών:
 - AnimalPedia.apk: το apk αρχείο για άμεση εγκατάσταση της εφαρμογής σε android συσκευές 
 - AnimalPediaDemo.mp4: ένα σύντομο demo της εφαρμογής μας 
 
-
+<br><br><br>
 
 # Introduction
 The application was proceeded by a group of undergraduate students of the Department of Informatics of AUTh in the context of the implementation of the work of the course Development of Mobile Devices.
@@ -40,14 +39,14 @@ Our application is divided into 4 main categories in which you find the user in 
 Home - Home with the five main categories of animals, where one of these uses is selected discovers its animals.
 Search - An animal search page.
 Favorites - Animal page saved as user's favorites.
-Map - Page with a map that a continent selects the user to discover its animals.
-![Στιγμιότυπο οθόνης 2021-08-13 155058](https://user-images.githubusercontent.com/56198786/129361414-73592aef-ed4f-4909-9699-686110cf31fc.png | width=600)
+Map - Page with a map that a continent selects the user to discover its animals.<br>
+<img src="https://user-images.githubusercontent.com/56198786/129361414-73592aef-ed4f-4909-9699-686110cf31fc.png" width="500">
 
-Screenshots of the four main screens:
-![Screenshot_20210529-215412_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361469-53863684-f429-424a-8652-119c0098033a.jpg | width=300)
-![Screenshot_20210529-215445_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361474-46663912-54f8-405d-8d77-a4d28ea16312.jpg | width=300)
-![Screenshot_20210529-215455_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361495-1c2e7fb8-515e-4a35-afa5-dd155a9faee8.jpg | width=300)
-![Screenshot_20210529-215508_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361512-e8c18da5-cc82-4095-b3dd-cdcdf55963f3.jpg | width=300)
+Screenshots of the four main screens:<br>
+<img src="https://user-images.githubusercontent.com/56198786/129361469-53863684-f429-424a-8652-119c0098033a.jpg" width="250">
+<img src="https://user-images.githubusercontent.com/56198786/129361474-46663912-54f8-405d-8d77-a4d28ea16312.jpg" width="250">
+<img src="https://user-images.githubusercontent.com/56198786/129361495-1c2e7fb8-515e-4a35-afa5-dd155a9faee8.jpg" width="250">
+<img src="https://user-images.githubusercontent.com/56198786/129361512-e8c18da5-cc82-4095-b3dd-cdcdf55963f3.jpg" width="250">
 
 # See also
 The application supports dark mode, which adapts to the operation of the device, can also be changed from the settings.
