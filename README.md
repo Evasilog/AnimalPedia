@@ -12,7 +12,7 @@ Home – Αρχική σελίδα με τις πέντε βασικές κατ�
 Search – Σελίδα αναζήτησης ενός ζώου. 
 Favorites – Σελίδα με τα ζώα που έχει αποθηκεύσει ως αγαπημένα του ο χρήστης. 
 Map – Σελίδα με έναν χάρτη που επιλέγοντας μια ήπειρο ο χρήστης ανακαλύπτει τα ζώα αυτής. 
-![Στιγμιότυπο οθόνης 2021-08-13 155058](https://user-images.githubusercontent.com/56198786/129361414-73592aef-ed4f-4909-9699-686110cf31fc.png | width=600)
+<img src="https://user-images.githubusercontent.com/56198786/129361414-73592aef-ed4f-4909-9699-686110cf31fc.png" width="600">
 
 Screenshots των τεσσάρων βασικών οθονών:
 ![Screenshot_20210529-215412_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361469-53863684-f429-424a-8652-119c0098033a.jpg | width=300)
