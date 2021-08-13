@@ -12,13 +12,13 @@ Home – Αρχική σελίδα με τις πέντε βασικές κατ�
 Search – Σελίδα αναζήτησης ενός ζώου. 
 Favorites – Σελίδα με τα ζώα που έχει αποθηκεύσει ως αγαπημένα του ο χρήστης. 
 Map – Σελίδα με έναν χάρτη που επιλέγοντας μια ήπειρο ο χρήστης ανακαλύπτει τα ζώα αυτής. 
-![Στιγμιότυπο οθόνης 2021-08-13 155058](https://user-images.githubusercontent.com/56198786/129361414-73592aef-ed4f-4909-9699-686110cf31fc.png)
+![Στιγμιότυπο οθόνης 2021-08-13 155058](https://user-images.githubusercontent.com/56198786/129361414-73592aef-ed4f-4909-9699-686110cf31fc.png | width=600)
 
 Screenshots των τεσσάρων βασικών οθονών:
-![Screenshot_20210529-215412_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361469-53863684-f429-424a-8652-119c0098033a.jpg)
-![Screenshot_20210529-215445_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361474-46663912-54f8-405d-8d77-a4d28ea16312.jpg)
-![Screenshot_20210529-215455_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361495-1c2e7fb8-515e-4a35-afa5-dd155a9faee8.jpg)
-![Screenshot_20210529-215508_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361512-e8c18da5-cc82-4095-b3dd-cdcdf55963f3.jpg)
+![Screenshot_20210529-215412_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361469-53863684-f429-424a-8652-119c0098033a.jpg | width=300)
+![Screenshot_20210529-215445_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361474-46663912-54f8-405d-8d77-a4d28ea16312.jpg | width=300)
+![Screenshot_20210529-215455_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361495-1c2e7fb8-515e-4a35-afa5-dd155a9faee8.jpg | width=300)
+![Screenshot_20210529-215508_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361512-e8c18da5-cc82-4095-b3dd-cdcdf55963f3.jpg | width=300)
 
 
 # Δείτε επίσης
@@ -41,13 +41,13 @@ Home - Home with the five main categories of animals, where one of these uses is
 Search - An animal search page.
 Favorites - Animal page saved as user's favorites.
 Map - Page with a map that a continent selects the user to discover its animals.
-![Στιγμιότυπο οθόνης 2021-08-13 155058](https://user-images.githubusercontent.com/56198786/129361414-73592aef-ed4f-4909-9699-686110cf31fc.png)
+![Στιγμιότυπο οθόνης 2021-08-13 155058](https://user-images.githubusercontent.com/56198786/129361414-73592aef-ed4f-4909-9699-686110cf31fc.png | width=600)
 
 Screenshots of the four main screens:
-![Screenshot_20210529-215412_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361469-53863684-f429-424a-8652-119c0098033a.jpg)
-![Screenshot_20210529-215445_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361474-46663912-54f8-405d-8d77-a4d28ea16312.jpg)
-![Screenshot_20210529-215455_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361495-1c2e7fb8-515e-4a35-afa5-dd155a9faee8.jpg)
-![Screenshot_20210529-215508_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361512-e8c18da5-cc82-4095-b3dd-cdcdf55963f3.jpg)
+![Screenshot_20210529-215412_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361469-53863684-f429-424a-8652-119c0098033a.jpg | width=300)
+![Screenshot_20210529-215445_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361474-46663912-54f8-405d-8d77-a4d28ea16312.jpg | width=300)
+![Screenshot_20210529-215455_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361495-1c2e7fb8-515e-4a35-afa5-dd155a9faee8.jpg | width=300)
+![Screenshot_20210529-215508_AnimalPedia](https://user-images.githubusercontent.com/56198786/129361512-e8c18da5-cc82-4095-b3dd-cdcdf55963f3.jpg | width=300)
 
 # See also
 The application supports dark mode, which adapts to the operation of the device, can also be changed from the settings.
