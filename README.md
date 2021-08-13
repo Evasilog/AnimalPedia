@@ -4,7 +4,7 @@
 Η εφαρμογή αναπτύχθηκε από μια ομάδα προπτυχιακών φοιτητών του τμήματος Πληροφορικής ΑΠΘ στα πλαίσια υλοποίησης εργασίας του μαθήματος Ανάπτυξη Εφαρμογών Κινητών Συσκευών.
 
 # Σκοπός της εφαρμογής
-Στόχος της εφαρμογής είναι η ενημέρωση των χρηστών για τα ζώα του πλανήτη μέσα από ένα διαδραστικό περιβάλλον. Χρήστες μπορεί να είναι μικροί και μεγάλοι που επιθυμούν να ερευνήσουν το ζωικό βασίλειο. Η εφαρμογή θα μπορούσε να χρησιμοποιηθεί και για εκπαιδευτικούς σκοπούς και οι μαθητές να μαθαίνουν με τη βοήθεια της τεχνολογίας. 
+Στόχος της εφαρμογής είναι η ενημέρωση των χρηστών για τα ζώα του πλανήτη μέσα από ένα διαδραστικό περιβάλλον. 
 
 # Λειτουργικότητας της εφαρμογής 
 Η εφαρμογή μας χωρίζεται σε 4 βασικές κατηγορίες τις οποίες βρίσκει ο χρήστης στο bottom navigation bar.
@@ -32,7 +32,7 @@ Screenshots των τεσσάρων βασικών οθονών:<br>
 The application was proceeded by a group of undergraduate students of the Department of Informatics of AUTh in the context of the implementation of the work of the course Development of Mobile Devices.
 
 # Purpose of the application
-The purpose of the application is to inform users about the animals of the planet through an interactive environment. Users can be young and old who want to explore the animal kingdom. The application could be used for educational purposes and students can learn with the help of technology.
+The purpose of the application is to inform users about the animals of the planet through an interactive environment.
 
 # Application functionality
 Our application is divided into 4 main categories in which you find the user in the bottom navigation bar.
