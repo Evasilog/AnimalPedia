@@ -26,7 +26,9 @@ Screenshots των τεσσάρων βασικών οθονών:<br>
 - AnimalPedia.apk: το apk αρχείο για άμεση εγκατάσταση της εφαρμογής σε android συσκευές
 - AnimalPediaDemo.mp4: ένα σύντομο demo της εφαρμογής μας 
 
-<br><br><br>
+<br>
+<hr>
+<br>
 
 # Introduction
 The application was proceeded by a group of undergraduate students of the Department of Informatics of AUTh in the context of the implementation of the work of the course Development of Mobile Devices.
