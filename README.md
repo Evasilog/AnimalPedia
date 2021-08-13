@@ -15,10 +15,10 @@
 <img src="https://user-images.githubusercontent.com/56198786/129361414-73592aef-ed4f-4909-9699-686110cf31fc.png" width="500">
 
 Screenshots των τεσσάρων βασικών οθονών:<br>
-<img src="https://user-images.githubusercontent.com/56198786/129361469-53863684-f429-424a-8652-119c0098033a.jpg" width="250">
-<img src="https://user-images.githubusercontent.com/56198786/129361474-46663912-54f8-405d-8d77-a4d28ea16312.jpg" width="250">
-<img src="https://user-images.githubusercontent.com/56198786/129361495-1c2e7fb8-515e-4a35-afa5-dd155a9faee8.jpg" width="250">
-<img src="https://user-images.githubusercontent.com/56198786/129361512-e8c18da5-cc82-4095-b3dd-cdcdf55963f3.jpg" width="250">
+<img src="https://user-images.githubusercontent.com/56198786/129361469-53863684-f429-424a-8652-119c0098033a.jpg" width="230">
+<img src="https://user-images.githubusercontent.com/56198786/129361474-46663912-54f8-405d-8d77-a4d28ea16312.jpg" width="230">
+<img src="https://user-images.githubusercontent.com/56198786/129361495-1c2e7fb8-515e-4a35-afa5-dd155a9faee8.jpg" width="230">
+<img src="https://user-images.githubusercontent.com/56198786/129361512-e8c18da5-cc82-4095-b3dd-cdcdf55963f3.jpg" width="230">
 
 # Δείτε επίσης
 Η εφαρμογή υποστηρίζει dark mode, το οποίο προσαρμόζεται με τη λειτουργία της συσκευής, ειδάλλως μπορεί να αλλάξει και από τις ρυθμίσεις.<br>
@@ -43,10 +43,10 @@ Our application is divided into 4 main categories in which you find the user in 
 <img src="https://user-images.githubusercontent.com/56198786/129361414-73592aef-ed4f-4909-9699-686110cf31fc.png" width="500">
 
 Screenshots of the four main screens:<br>
-<img src="https://user-images.githubusercontent.com/56198786/129361469-53863684-f429-424a-8652-119c0098033a.jpg" width="250">
-<img src="https://user-images.githubusercontent.com/56198786/129361474-46663912-54f8-405d-8d77-a4d28ea16312.jpg" width="250">
-<img src="https://user-images.githubusercontent.com/56198786/129361495-1c2e7fb8-515e-4a35-afa5-dd155a9faee8.jpg" width="250">
-<img src="https://user-images.githubusercontent.com/56198786/129361512-e8c18da5-cc82-4095-b3dd-cdcdf55963f3.jpg" width="250">
+<img src="https://user-images.githubusercontent.com/56198786/129361469-53863684-f429-424a-8652-119c0098033a.jpg" width="230">
+<img src="https://user-images.githubusercontent.com/56198786/129361474-46663912-54f8-405d-8d77-a4d28ea16312.jpg" width="230">
+<img src="https://user-images.githubusercontent.com/56198786/129361495-1c2e7fb8-515e-4a35-afa5-dd155a9faee8.jpg" width="230">
+<img src="https://user-images.githubusercontent.com/56198786/129361512-e8c18da5-cc82-4095-b3dd-cdcdf55963f3.jpg" width="230">
 
 # See also
 The application supports dark mode, which adapts to the operation of the device, can also be changed from the settings.<br>
