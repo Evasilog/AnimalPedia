@@ -31,17 +31,18 @@ Screenshots των τεσσάρων βασικών οθονών:<br>
 <br>
 
 # Introduction
-The application was proceeded by a group of undergraduate students of the Department of Informatics of AUTh in the context of the implementation of the work of the course Development of Mobile Devices.
+This app was developed by a group of undergraduate students of the department of informatics of AUTh within the course of the
+subject "Development of Mobile Devices"
 
 # Purpose of the application
-The purpose of the application is to inform users about the animals of the planet through an interactive environment.
+The goal of the app is to inform the users about the variousanimals of the planet through an interactive environment.
 
 # Application functionality
-Our application is divided into 4 main categories in which you find the user in the bottom navigation bar.
-- Home - Home with the five main categories of animals, where one of these uses is selected discovers its animals.
-- Search - An animal search page.
-- Favorites - Animal page saved as user's favorites.
-- Map - Page with a map that a continent selects the user to discover its animals.<br>
+Our application has 4 main parts where are all located at the bottom into a navigation bar
+- Home - the home page which contains 5 animal groups where the user can select any of these and discover its animals.
+- Search - animal search page. 
+- Favorites - a page where the user can store and find his favorites animals. 
+- Map - this page has a world map where the user can tap on each continent and view its animals. <br>
 <img src="https://user-images.githubusercontent.com/56198786/129361414-73592aef-ed4f-4909-9699-686110cf31fc.png" width="500">
 
 Screenshots of the four main screens:<br>
@@ -51,7 +52,7 @@ Screenshots of the four main screens:<br>
 <img src="https://user-images.githubusercontent.com/56198786/129361512-e8c18da5-cc82-4095-b3dd-cdcdf55963f3.jpg" width="200">
 
 # See also
-The application supports dark mode, which adapts to the operation of the device, can also be changed from the settings.<br>
+The app supports dark mode and automatically adjust to light or dark, based on your phone’s mode, otherwise the user can choose the mode manually from settings.<br>
 The following files are included:
-- AnimalPedia.apk: the apk file for immediate installation of the application on Android devices
-- AnimalPediaDemo.mp4: a short demo of our application<br>
+-  AnimalPedia.apk: the apk file for immediate installation
+- AnimalPediaDemo.mp4: a brief demo of our application<br>
