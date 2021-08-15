@@ -16,21 +16,39 @@ import android.widget.Toast;
 import com.zolad.zoominimageview.ZoomInImageView;
 
 /**
+ * en
+ * This class manipulates the activity that shows the detailed card of an animal (image, details, animal class etc)
+ * -------------------------------------
+ * el
  * Αυτή η κλάση διαχειρίζεται το activity προβολής της καρτέλας ενός ζώου
  */
 public class AnimalView extends AppCompatActivity {
 
-    private MyDBHandler dbHandler; //αντικείμενο της βάσης
-    private Animal animal; //αντικείμενο ζώου
-    private ImageView love; //αντικείμενο του κουμπιού για την προσθήκη στα αγαπημένα
+    //database object
+    //αντικείμενο της βάσης
+    private MyDBHandler dbHandler;
 
-    private Toast toast; //μήνυμα ενημέρωσης χρήστη
+    //animal object
+    //αντικείμενο ζώου
+    private Animal animal;
+
+    //an image button object that adds an animal on favorites
+    //αντικείμενο του κουμπιού για την προσθήκη στα αγαπημένα
+    private ImageView love;
+
+    //object that informs the user with a message
+    //μήνυμα ενημέρωσης χρήστη
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_animal_view); //σύνδεση του layout με τον κώδικα
 
+        //connect the layout with the code
+        //σύνδεση του layout με τον κώδικα
+        setContentView(R.layout.activity_animal_view);
+
+        //links the objects from layout
         //σύνδεση των αντικειμένων από το layout
         TextView anName;
         ZoomInImageView anImage;
@@ -47,8 +65,11 @@ public class AnimalView extends AppCompatActivity {
         love = findViewById(R.id.love);
         anDetails = findViewById(R.id.an_details);
 
-        animal = getIntent().getParcelableExtra("AnimalId"); //σύνδεση του αντικειμένου που λαμβάνουμε από το προηγούμενο activity
+        //links the object that we get from the previous activity
+        //σύνδεση του αντικειμένου που λαμβάνουμε από το προηγούμενο activity
+        animal = getIntent().getParcelableExtra("AnimalId");
 
+        //sets the data into the objects
         //τοποθέτηση των δεδομένων στα αντικείμενα
         anName.setText(animal.getName());
         byte[] img = animal.getImage();
@@ -66,9 +87,11 @@ public class AnimalView extends AppCompatActivity {
             }
         });
 
+        //database initialization
+        //αρχικοποίηση της βάσης
+        dbHandler = new MyDBHandler(this, null);
 
-        dbHandler = new MyDBHandler(this, null); //αρχικοποίηση της βάσης
-
+        //checks if the animal is already set as favorite
         //έλεγχος αν το ζώο έχει τοποθετηθεί στα αγαπημένα
         if (animal.getFavorite()){
             love.setColorFilter(Color.RED);
@@ -77,13 +100,17 @@ public class AnimalView extends AppCompatActivity {
             love.setColorFilter(getResources().getColor(android.R.color.darker_gray));
         }
 
+        //if the user selects the heart then checks the state (for instance if is already on favorites) and shows the right message
         //αν γίνει κλικ στην καρδία έλεγχος της καταστασής της και εμφάνιση του αντίστοιχου μηνύματος στο χρήστη
         love.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean isFav = animal.getFavorite();
                 animal.setFavorite(!isFav);
-                dbHandler.changeFavoriteState(animal); //αλλαγή της κατάστασης του κουμπιού love στη βάση
+
+                //changes the state of the love button on the database
+                //αλλαγή της κατάστασης του κουμπιού love στη βάση
+                dbHandler.changeFavoriteState(animal);
                 if (isFav){
                     love.setColorFilter(getResources().getColor(android.R.color.darker_gray));
                     if(toast != null){

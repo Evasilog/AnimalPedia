@@ -13,33 +13,63 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.List;
 
-
 /**
+ * en
+ * This class is used to manipulate the activity when the user selects an animal class from home
+ * page(amphibians, reptiles etc) or from the map page where the user selects a continent.
+ * This is the same activity
+ * -------------------------------------
+ * el
  * Αυτή η κλάση διαχειρίζεται το activity που εμφανίζεται επιλέγοντας μια κατηγορία από το Home ή επιλέγοντας
  * μια ήπειρο από το Map
  */
 
+
 public class AnimalRecyclerView extends AppCompatActivity {
 
-    private String titleText; //το όνομα της ηπείρου ή της κατηγορίας του ζώου
-    private String type; //μεταβλητή για την διάκριση μεταξύ ηπείρου και κατηγορίας
+    //contains the name of the continent or the name of the animal class
+    //το όνομα της ηπείρου ή της κατηγορίας του ζώου
+    private String titleText;
 
-    private List<Animal> animals; //λίστα που περιέχει τα ζώα για εμφάνιση
+    //variable for the discrimination between the continent and the animal class
+    //μεταβλητή για την διάκριση μεταξύ ηπείρου και κατηγορίας
+    private String type;
+
+    //list that has the animals that about to show
+    //λίστα που περιέχει τα ζώα για εμφάνιση
+    private List<Animal> animals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_animal_recycler_view); //σύνδεση του layout με τον κώδικα
+
+        //connect the layout with the code
+        //σύνδεση του layout με τον κώδικα
+        setContentView(R.layout.activity_animal_recycler_view);
 
 
-        TextView title_page; //περίεχει το όνομα της κατηγορίας ή της ηπείρου των ζώων
-        RecyclerView.LayoutManager layoutManager; //ορίζει την διάταξη των αντικειμένων της λίστας
-        MyDBHandler dbHandler = new MyDBHandler(this, null); //αρχικοποίηση της βάσης
-        RecyclerView recyclerView; //UI στοιχείο για την εμφάνιση των ζώων
-        RecyclerView.Adapter adapter; //αντικείμενο που συνδέει τα δεδομένα κάθε κάρτας ενός ζώου με τη διάταξη της κάρτας του
+        //contains the name of the continent or the name of the animal class
+        //περίεχει το όνομα της κατηγορίας ή της ηπείρου των ζώων
+        TextView title_page;
+
+        //sets the layout of the list's objects
+        //ορίζει την διάταξη των αντικειμένων της λίστας
+        RecyclerView.LayoutManager layoutManager;
+
+        //initialization of the database
+        //αρχικοποίηση της βάσης
+        MyDBHandler dbHandler = new MyDBHandler(this, null);
+
+        //UI element for the animals that about to show
+        //UI στοιχείο για την εμφάνιση των ζώων
+        RecyclerView recyclerView;
+
+        //object that links the data of each animal card with the layout of the card
+        //αντικείμενο που συνδέει τα δεδομένα κάθε κάρτας ενός ζώου με τη διάταξη της κάρτας του
+        RecyclerView.Adapter adapter;
 
 
-
+        //gets the data from the previous activity
         //λήψη των δεδομένων από το προηγούμενο activity
         Bundle extra = getIntent().getExtras();
         if (extra != null){
@@ -49,6 +79,7 @@ public class AnimalRecyclerView extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view);
 
+        //sets the layout of the object on the RecyclerView
         //ορισμός του layout των αντικειμένων στο RecyclerView
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -60,8 +91,8 @@ public class AnimalRecyclerView extends AppCompatActivity {
 
         BottomNavigationView nav = findViewById(R.id.navigation_bar);
 
-        //έλεγχος για την κατάλληλη εμφάνιση του τίτλου
-        //και επιλογή του αντίστοιχου αντικειμένουν από το μενού
+        //checks the correct appearance of the title and selects of the corresponding object from menu
+        //έλεγχος για την κατάλληλη εμφάνιση του τίτλου και επιλογή του αντίστοιχου αντικειμένουν από το μενού
         if(!type.equals("Continent")) {
             ((ViewGroup) view.getParent()).removeView(view);
             animals = dbHandler.getAnimals(titleText, 1);
@@ -71,10 +102,12 @@ public class AnimalRecyclerView extends AppCompatActivity {
             nav.setSelectedItemId(R.id.nav_map);
         }
 
+        //initialization of the elements on the adapter
         //αρχικοποίηση των στοιχείων στο adapter
         adapter = new RecyclerAdapter(animals, 1);
         recyclerView.setAdapter(adapter);
 
+        //checks what the user selects from navigation bar
         //ελεγχος δραστηριότητας στο navigation bar
         nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

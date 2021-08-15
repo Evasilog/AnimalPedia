@@ -14,26 +14,42 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.List;
 
 /**
+ * en
+ * This class manipulates the activity with the favorite animals of the user
+ * -------------------------------------
+ * el
  * Αυτή η κλάση διαχειρίζεται το activity με τα αγαπημένα ζώα του χρήστη
  */
 
 public class Favorites extends AppCompatActivity {
 
-    private List<Animal> favAnimals; //λίστα με τα αγαπημένα ζώα
+    //list with the favorite animals
+    //λίστα με τα αγαπημένα ζώα
+    private List<Animal> favAnimals;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorites); //σύνδεση του layout με τον κώδικα
+
+        //connect the layout with the code
+        //σύνδεση του layout με τον κώδικα
+        setContentView(R.layout.activity_favorites);
 
         BottomNavigationView nav = findViewById(R.id.navigation_bar);
         nav.setSelectedItemId(R.id.nav_favorites);
 
-        TextView fav_hint = findViewById(R.id.fav_count); //μήνυμα για τον αριθμό των ζώων στα αγαπημένα
+        //message that holds the number of the animals that are on the favorites
+        //μήνυμα για τον αριθμό των ζώων στα αγαπημένα
+        TextView fav_hint = findViewById(R.id.fav_count);
 
-        MyDBHandler dbHandler = new MyDBHandler(this, null); //αρχικοποίηση της βάσης
-        favAnimals = dbHandler.getAnimals(null, 3); //αποθήκευση των ζώων στη λίστα
+        //database initialization
+        //αρχικοποίηση της βάσης
+        MyDBHandler dbHandler = new MyDBHandler(this, null);
+
+        //store the animals into list
+        //αποθήκευση των ζώων στη λίστα
+        favAnimals = dbHandler.getAnimals(null, 3);
 
         RecyclerView recyclerView = findViewById(R.id.fav_recycler_view);
 
@@ -42,6 +58,8 @@ public class Favorites extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
+
+        //sets the right message on the top of the activity about how many animals are stored
         //εμφάνιση του κατάλληλου μηνύματος
         int count = adapter.getItemCount();
         if (count==0){
@@ -52,6 +70,7 @@ public class Favorites extends AppCompatActivity {
             fav_hint.setText(count + " " + getString(R.string.favorites_hint_2plus));
         }
 
+        //checks what the user selects from navigation bar
         //ελεγχος δραστηριότητας στο navigation bar
         nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
