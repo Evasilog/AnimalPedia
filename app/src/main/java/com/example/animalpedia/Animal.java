@@ -18,7 +18,7 @@ public class Animal implements Parcelable {
     private String animalID;
     private String animalClass;
     private String continent;
-    private String name;
+    private String nameAN;
     private String details;
     private byte[] image;
     private String link;
@@ -31,7 +31,7 @@ public class Animal implements Parcelable {
     public Animal(String animalID, String continent, String animalClass, String name, String details, String link, byte[] image, boolean favorite){
         this.animalClass = animalClass;
         this.animalID = animalID;
-        this.name = name;
+        this.nameAN = name;
         this.details = details;
         this.image = image;
         this.link = link;
@@ -52,7 +52,7 @@ public class Animal implements Parcelable {
         animalID = in.readString();
         animalClass = in.readString();
         continent = in.readString();
-        name = in.readString();
+        nameAN = in.readString();
         details = in.readString();
         image = in.createByteArray();
         link = in.readString();
@@ -64,7 +64,7 @@ public class Animal implements Parcelable {
         dest.writeString(animalID);
         dest.writeString(animalClass);
         dest.writeString(continent);
-        dest.writeString(name);
+        dest.writeString(nameAN);
         dest.writeString(details);
         dest.writeByteArray(image);
         dest.writeString(link);
@@ -117,7 +117,7 @@ public class Animal implements Parcelable {
     }
 
     public String getName() {
-        return this.name;
+        return this.nameAN;
     }
 
     public String getContinent(){
@@ -141,7 +141,7 @@ public class Animal implements Parcelable {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.nameAN = name;
     }
 
     public void setDetails(String details) {
